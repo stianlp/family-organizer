@@ -1,17 +1,22 @@
 angular.module('starter.services', [])
 
-    .factory('Main', function($firebaseObject) {
+    .factory('Main', function($firebaseObject, $firebaseArray) {
         var loggedInUser;
         $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1')).$loaded().then(function(x) {
-           loggedInUser = x;
+            loggedInUser = x;
         });
 
-        //TODO get family members
+        var family;
+        var famPath = [];
+
+
         //TODO handshake
 
         return {
             setUser: setUser,
-            getUser: getUser
+            getUser: getUser,
+            getFamily: getFamily,
+            //getFamilyPath: getFamilyPath
         };
 
         function setUser(user) {
@@ -22,6 +27,21 @@ angular.module('starter.services', [])
         function getUser(){
             return loggedInUser;
         }
+
+        //TODO get family members
+        function getFamily(){
+            var famID = loggedInUser.familyId;
+            family = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID));
+
+
+            return family;
+        }
+
+        //function getFamilyPath(){
+        //    var famID = loggedInUser.familyId;
+        //    family = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID));
+        //
+        //}
     })
 
     .factory('Users', function($firebaseArray, $firebaseObject) {

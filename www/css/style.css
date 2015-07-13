@@ -9,6 +9,10 @@
     background: blue;
 }
 
+.highFamily {
+    background-color: #886aea;
+}
+
 .error {
     color: #d4081a !important;
 }

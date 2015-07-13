@@ -61,7 +61,7 @@ angular.module('starter.controllers', [])
         //Main.getUser().$loaded().then(function(x) {
         //    $scope.userPosition = x.position;
         //});
-        //
+
         $scope.userPosition = Main.getUser().position;
 
         $scope.pickTask = function(task){
@@ -75,6 +75,11 @@ angular.module('starter.controllers', [])
             }
 
         };
+
+        $scope.familyMembers = Main.getFamily();
+
+        //TODO: combine arrays (too tired to think, sorry)
+
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {

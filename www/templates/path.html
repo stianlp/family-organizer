@@ -1,9 +1,10 @@
 <ion-view view-title="Path">
     <ion-content class="padding">
-        <ion-item collection-repeat="task in pathTasks" ng-class="{'highlight': task === userPosition}">
-            <div ng-click="pickTask(task)">
-                <p>{{task}}</p>
-            </div>
-        </ion-item>
+        <ion-item collection-repeat="task in pathTasks" ng-class="{'highlight': task === userPosition}" >
+
+                <div  ng-click="pickTask(task)" >
+                    <p>{{task}}</p>
+                </div>
+            </ion-item>
     </ion-content>
 </ion-view>
