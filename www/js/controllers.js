@@ -16,13 +16,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('ProfileCtrl', function($scope, Users, Main) {
+    .controller('ProfileCtrl', function($scope, $state, Users, Main) {
         $scope.users = Users.getUsers();
-        console.log($scope.users);
 
         $scope.chooseUser = function(user) {
-            console.log('dasdas', user);
             Main.setUser(user);
+            $state.go('path');
         };
     })
 
