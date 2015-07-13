@@ -36,11 +36,22 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 templateUrl: "templates/tabs.html"
             })
 
+            /* OUR states, delete remove other states later */
+            //TODO remove other states
+
+
             .state('start', {
                 url: "/start",
                 templateUrl: "templates/start.html",
-                controller: 'ProfileCtrl'
+                controller: 'LoginCtrl'
             })
+
+            //TODO set family
+            //.state('task', {
+            //    url: "/task",
+            //    templateUrl: "templates/task.html",
+            //    controller: 'TaskCtrl'
+            //})
 
             .state('path', {
                 url: "/path",

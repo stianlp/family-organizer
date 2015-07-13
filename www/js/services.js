@@ -2,16 +2,12 @@ angular.module('starter.services', [])
 
     .factory('Main', function($firebaseObject) {
         var loggedInUser;
-       $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1')).$loaded().then(function(x) {
+        $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1')).$loaded().then(function(x) {
            loggedInUser = x;
         });
-        //var loggedInUser = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1'));
 
         //TODO get family members
-
-
         //TODO handshake
-        console.log(loggedInUser);
 
         return {
             setUser: setUser,
@@ -32,10 +28,10 @@ angular.module('starter.services', [])
         var ref = new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users');
         var array = $firebaseArray(ref);
 
-
         return {
             getUsers: getUsers,
-            getUser: getUser
+            getUser: getUser,
+            createUser: createUser
         };
 
         function getUsers(){
@@ -48,9 +44,13 @@ angular.module('starter.services', [])
             return selUser;
         }
 
+        function createUser(userData) {
+            array.$add(userData);
+        }
+
     })
 
-    .factory('Tasks', function($firebaseObject, $q) {
+    .factory('Tasks', function($firebaseObject) {
         var array = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks/task1'));
 
         return {
@@ -58,13 +58,6 @@ angular.module('starter.services', [])
         };
 
         function getTask() {
-            //var deferred = $q.defer();
-            //array.$loaded().then(function(x) {
-            //    deferred.resolve(x);
-            //});
-            //return deferred.promise;
             return array;
         }
-
     });
-

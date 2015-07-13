@@ -8,3 +8,7 @@
 .highlight {
     background: blue;
 }
+
+.error {
+    color: #d4081a !important;
+}
