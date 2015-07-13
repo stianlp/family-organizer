@@ -26,10 +26,11 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, Main) {
-        $scope.pathTasks = [1, 2, 3];
+        $scope.pathTasks = [0, 1, 2, 3];
+        $scope.userPosition = Main.getUser().position;
         $scope.pickTask = function(task){
-            var position = Main.getUser().position;
-            if (position === task){
+
+            if ($scope.userPosition === task){
                 console.log(task);
             }
             else{
