@@ -22,19 +22,30 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('PathCtrl', function($scope, Main) {
+    .controller('PathCtrl', function($scope, $window, $state, Main) {
         $scope.pathTasks = [0, 1, 2, 3];
-        $scope.userPosition = Main.getUser().position;
+
+        Main.getUser().$loaded().then(function(x) {
+            $scope.userPosition = x.position;
+        });
+
         $scope.pickTask = function(task){
 
             if ($scope.userPosition === task){
+                $state.go('task');
                 console.log(task);
             }
             else{
-                console.log("big nono");
+                $window.alert("Finsh your task!!");
             }
 
         };
+    })
+
+    .controller('TaskCtrl', function($scope, $window, Main) {
+        //TODO add logic here
+
+        console.log("were here");
     })
 
 

@@ -1,7 +1,9 @@
 angular.module('starter.services', [])
 
-    .factory('Main', function() {
-        var loggedInUser;
+    .factory('Main', function($firebaseObject) {
+        var loggedInUser = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1'));
+
+        console.log(loggedInUser);
 
         return {
             setUser: setUser,

@@ -48,6 +48,12 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 controller: 'PathCtrl'
             })
 
+            .state('task', {
+                url: "/task",
+                templateUrl: "templates/task.html",
+                controller: 'TaskCtrl'
+            })
+
             // Each tab has its own nav history stack:
 
             .state('tab.dash', {
