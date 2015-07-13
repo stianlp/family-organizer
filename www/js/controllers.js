@@ -3,7 +3,8 @@ angular.module('starter.controllers', [])
     .controller('DashCtrl', function($scope, Users) {
         $scope.memberDetails = {name: '', age: ''};
 
-        $scope.teamMembers = Users;
+        $scope.teamMembers = Users.getUsers();
+        Users.getUser("id1");
 
         $scope.add = function() {
             console.log($scope.teamMembers);
