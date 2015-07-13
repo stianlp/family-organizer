@@ -25,9 +25,11 @@ angular.module('starter.controllers', [])
     .controller('PathCtrl', function($scope, $window, $state, Main) {
         $scope.pathTasks = [0, 1, 2, 3];
 
-        Main.getUser().$loaded().then(function(x) {
-            $scope.userPosition = x.position;
-        });
+        //Main.getUser().$loaded().then(function(x) {
+        //    $scope.userPosition = x.position;
+        //});
+        //
+        $scope.userPosition = Main.getUser().position;
 
         $scope.pickTask = function(task){
 
@@ -42,8 +44,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('TaskCtrl', function($scope, $window, Main) {
+    .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
         //TODO add logic here
+        Tasks.getTask().$loaded().then(function(x) {
+            $scope.task = x.task;
+        });
+
         console.log("were here");
     })
 

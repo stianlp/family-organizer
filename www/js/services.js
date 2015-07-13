@@ -1,7 +1,11 @@
 angular.module('starter.services', [])
 
     .factory('Main', function($firebaseObject) {
-        var loggedInUser = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1'));
+        var loggedInUser;
+       $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1')).$loaded().then(function(x) {
+           loggedInUser = x;
+        });
+        //var loggedInUser = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1'));
 
         //TODO get family members
 
@@ -46,19 +50,21 @@ angular.module('starter.services', [])
 
     })
 
-    .factory('Tasks', function($firebaseArray, $q) {
-        var array = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks'));
+    .factory('Tasks', function($firebaseObject, $q) {
+        var array = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks/task1'));
 
         return {
             getTask: getTask
         };
 
         function getTask() {
-            var deferred = $q.defer();
-            array.$loaded().then(function(x) {
-                deferred.resolve(x);
-            });
-            return deferred.promise;
+            //var deferred = $q.defer();
+            //array.$loaded().then(function(x) {
+            //    deferred.resolve(x);
+            //});
+            //return deferred.promise;
+            return array;
         }
 
     });
+
