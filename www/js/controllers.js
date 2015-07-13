@@ -44,7 +44,6 @@ angular.module('starter.controllers', [])
 
     .controller('TaskCtrl', function($scope, $window, Main) {
         //TODO add logic here
-
         console.log("were here");
     })
 
