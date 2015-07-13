@@ -4,7 +4,6 @@ angular.module('starter.controllers', [])
         $scope.memberDetails = {name: '', age: ''};
 
         $scope.teamMembers = Users.getUsers();
-        Users.getUser("id1");
 
         $scope.add = function() {
             console.log($scope.teamMembers);
