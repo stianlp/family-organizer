@@ -42,8 +42,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('TaskCtrl', function($scope, $window, Main) {
+    .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
         //TODO add logic here
+        Tasks.getTask().$loaded().then(function(x) {
+            $scope.task = x.task;
+        });
+
 
         console.log("were here");
     })
