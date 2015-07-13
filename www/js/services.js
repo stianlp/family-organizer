@@ -4,12 +4,17 @@ angular.module('starter.services', [])
         var loggedInUser;
 
         return {
-            setUser: setUser
+            setUser: setUser,
+            getUser: getUser
         };
 
         function setUser(user) {
             console.log("Set the user to:" + user.name);
             loggedInUser = user;
+        }
+
+        function getUser(){
+            return loggedInUser;
         }
     })
 
