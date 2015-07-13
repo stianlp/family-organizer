@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
                             age: '',
                             position: 0,
                             role: '',
-                            familyId: ''};
+                            familyId: -1};
 
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
@@ -46,7 +46,6 @@ angular.module('starter.controllers', [])
 
             if (index === -1) {
                 $scope.newUserExist = false;
-                console.log($scope.newUser);
                 Users.createUser($scope.newUser);
                 Main.setUser($scope.newUser); //TODO maybe we should get the correct object from server.
                 $state.go('path');
