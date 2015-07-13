@@ -16,6 +16,27 @@ angular.module('starter.controllers', [])
         };
     })
 
+    .controller('ProfileCtrl', function($scope, Users, Main) {
+        $scope.users = Users.getUsers();
+        console.log($scope.users);
+
+        $scope.chooseUser = function(user) {
+            console.log('dasdas', user);
+            Main.setUser(user);
+        };
+    })
+
+
+
+
+
+
+
+
+
+
+
+
     .controller('ChatsCtrl', function($scope, Chats) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
