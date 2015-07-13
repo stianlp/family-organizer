@@ -6,9 +6,6 @@ angular.module('starter.controllers', [])
         $scope.teamMembers = Users.getUsers();
 
         $scope.add = function() {
-            console.log($scope.teamMembers);
-            // calling $add on a synchronized array is like Array.push(),
-            // except that it saves the changes to our database!
             $scope.teamMembers.$add({
                 name: $scope.memberDetails.name,
                 age: $scope.memberDetails.age
