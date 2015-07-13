@@ -19,10 +19,6 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 StatusBar.styleLightContent();
             }
         });
-
-        $timeout(function() {
-            $state.go('tab.dash');
-        }, 5000);
     })
 
     .config(function($stateProvider, $urlRouterProvider) {
@@ -40,10 +36,16 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 templateUrl: "templates/tabs.html"
             })
 
-            .state('new', {
-                url: "/new",
-                //abstract: true,
-                templateUrl: "templates/new.html"
+            .state('start', {
+                url: "/start",
+                templateUrl: "templates/start.html",
+                controller: 'ProfileCtrl'
+            })
+
+            .state('path', {
+                url: "/path",
+                templateUrl: "templates/path.html",
+                controller: 'PathCtrl'
             })
 
             // Each tab has its own nav history stack:
@@ -88,6 +90,6 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/dash');
+        $urlRouterProvider.otherwise('/start');
 
     });
