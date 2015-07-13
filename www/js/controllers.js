@@ -22,6 +22,20 @@ angular.module('starter.controllers', [])
         };
     })
 
+    .controller('PathCtrl', function($scope, Main) {
+        $scope.pathTasks = [0, 1, 2, 3];
+        $scope.userPosition = Main.getUser().position;
+        $scope.pickTask = function(task){
+
+            if ($scope.userPosition === task){
+                console.log(task);
+            }
+            else{
+                console.log("big nono");
+            }
+
+        };
+    })
 
 
 
