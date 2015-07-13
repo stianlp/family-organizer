@@ -48,7 +48,6 @@ angular.module('starter.controllers', [])
             $scope.task = x.task;
         });
 
-
         console.log("were here");
     })
 

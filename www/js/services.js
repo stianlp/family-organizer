@@ -40,5 +40,22 @@ angular.module('starter.services', [])
             return selUser;
         }
 
+    })
+
+    .factory('Tasks', function($firebaseArray, $q) {
+        var array = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks'));
+
+        return {
+            getTask: getTask
+        };
+
+        function getTask() {
+            var deferred = $q.defer();
+            array.$loaded().then(function(x) {
+                deferred.resolve(x);
+            });
+            return deferred.promise;
+        }
+
     });
 
