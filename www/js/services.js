@@ -3,6 +3,10 @@ angular.module('starter.services', [])
     .factory('Main', function($firebaseObject) {
         var loggedInUser = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1'));
 
+        //TODO get family members
+
+
+        //TODO handshake
         console.log(loggedInUser);
 
         return {
