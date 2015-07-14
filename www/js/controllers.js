@@ -138,6 +138,7 @@ angular.module('starter.controllers', [])
 
 
                 Users.getUser(entry.$value).then(function (x){
+                    console.log(x)
                     $scope.familyPath[x.position].push(x.$id);
 
                 });

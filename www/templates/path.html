@@ -3,6 +3,7 @@
     < scroll="false">
         <div class="path">
         <div ng-repeat="arrayfam in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="arrayfam.length > 0">
+            <path members="arrayfam"></path>
             <!--<path attrval="true"></path>-->
                 <!--<div  ng-click="pickTask(task)" >-->
                     <!--<p>{{task}}</p>-->
