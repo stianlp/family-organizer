@@ -96,7 +96,7 @@ angular.module('starter.controllers', [])
         //    $scope.userPosition = x.position;
         //});
 
-        $scope.userPosition = Main.getUser().position;
+        //$scope.userPosition = Main.getUser().position;
 
         $scope.pickTask = function(task){
 
@@ -110,9 +110,28 @@ angular.module('starter.controllers', [])
 
         };
 
-        //$scope.familyMembers = Main.getFamily();
+        var familyMembers;
+        //TODO ask Stian
+        console.log(Main.getFamily());
+        Main.getFamily().then(function (x) {
+            familyMembers = x;
 
-        //TODO: combine arrays (too tired to think, sorry)
+            //TODO: combine arrays
+            var familyPath = new Array($scope.pathTasks.length);
+            for (var i=0; i<familyPath.length; i++){
+                familyPath[i] = [];
+            }
+
+
+            familyMembers.forEach(function(entry){
+                console.log(entry.position)
+                familyPath[entry.position].push(entry.name);
+            });
+
+
+        });
+
+
 
     })
 

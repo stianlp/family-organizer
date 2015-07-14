@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-    .factory('Main', function($firebaseObject, $firebaseArray) {
+    .factory('Main', function($firebaseObject, $firebaseArray, $q) {
         var loggedInUser;
 
         var family;
@@ -27,6 +27,8 @@ angular.module('starter.services', [])
 
         //TODO get family members
         function getFamily(){
+
+            console.log(loggedInUser);
             var famID = loggedInUser.familyId;
             var deferred = $q.defer();
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID + '/users')).$loaded().then(function (x){
