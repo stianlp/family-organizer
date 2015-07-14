@@ -77,22 +77,33 @@ angular.module('starter.controllers', [])
 
 
         /* Join family variables */
-        $scope.existingUser = { username: ''};
-        $scope.newFamily = { username: '',
-                             name: '',
-                             users: {}};
-
+        $scope.search = '';
         $scope.join = function(family) {
-            console.log(family);
-            Families.addUserToFamily(Main.getUser().$id, family.$id);
+            Families.addUserToFamily(Main.getUser().$id, family.$id).then(function(data) {
+                $state.go('path');
+            });
         };
 
         /* Create family variables */
-        $scope.existingUserNotExist = false;
-        $scope.newUserExist = false;
+        $scope.newFamily = { username: '',
+                             name: ''};
+        $scope.newFamilyExist = false;
 
         $scope.create = function() {
+            var index = _.findIndex($scope.existingFamilies, function(family) {
+                return family.username === $scope.newFamily.username;
+            });
 
+            if (index === -1) {
+                $scope.newFamilyExist = false;
+                Families.createFamily($scope.newFamily).then(function(familyData) {
+                    Families.addUserToFamily(Main.getUser().$id, familyData.$id).then(function() {
+                        $state.go('path');
+                    });
+                });
+            } else {
+                $scope.newFamilyExist = true;
+            }
         };
     })
 
@@ -100,14 +111,8 @@ angular.module('starter.controllers', [])
         $scope.pathTasks = [0, 1, 2, 3]
         $scope.familyPath = [];
         $scope.getTheClass = function(task) {
-            console.log(task);
-            return 'pos' + task};
-
-        //Main.getUser().$loaded().then(function(x) {
-        //    $scope.userPosition = x.position;
-        //});
-
-        //$scope.userPosition = Main.getUser().position;
+            return 'pos' + task;
+        };
 
         $scope.pickTask = function(task){
 
@@ -120,11 +125,7 @@ angular.module('starter.controllers', [])
 
         };
 
-        var familyMembers;
-        //TODO ask Stian
-
-        Main.getFamily().then(function (x) {
-            familyMembers = x;
+        Main.getFamily().then(function(familyMembers) {
 
             //TODO: combine arrays
             $scope.familyPath = new Array(8);
@@ -140,8 +141,6 @@ angular.module('starter.controllers', [])
                     $scope.familyPath[x.position].push(x.$id);
 
                 });
-
-                //familyPath[entry.position].push(entry.name);
             });
 
 

@@ -83,29 +83,39 @@ angular.module('starter.services', [])
 
     })
 
-    .factory('Families', function($firebaseArray, $firebaseObject, Main) {
+    .factory('Families', function($firebaseArray, $firebaseObject, Main, $q) {
         var families = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families'));
 
         return {
             getFamilies: getFamilies,
-            addUserToFamily: addUserToFamily
+            addUserToFamily: addUserToFamily,
+            createFamily: createFamily
         };
 
         function getFamilies(){
             return families;
         }
-
-        function addUserToFamily(userId, familyId){
+        
+        function addUserToFamily(userId, familyId) {
+            var deferred = $q.defer();
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId + '/users'))
                 .$loaded().then(function(ref) {
                     ref.$add(userId);
                     var user = Main.getUser();
                     user.familyId = familyId;
                     user.$save();
-
+                    deferred.resolve('Added to family');
                 });
+            return deferred.promise;
         }
 
+        function createFamily(familyData) {
+            var deferred = $q.defer();
+            families.$add(familyData).then(function(ref) {
+                deferred.resolve(families[families.$indexFor(ref.key())]);
+            });
+            return deferred.promise;
+        }
     })
 
     .factory('Tasks', function($firebaseObject) {
