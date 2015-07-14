@@ -85,7 +85,6 @@ angular.module('starter.controllers', [])
         };
 
         /* Create family variables */
-        $scope.existingUser = { username: ''};
         $scope.newFamily = { username: '',
                              name: ''};
         $scope.newFamilyExist = false;
@@ -111,14 +110,8 @@ angular.module('starter.controllers', [])
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
         $scope.pathTasks = [0, 1, 2, 3];
         $scope.getTheClass = function(task) {
-            console.log(task);
-            return 'pos' + task};
-
-        //Main.getUser().$loaded().then(function(x) {
-        //    $scope.userPosition = x.position;
-        //});
-
-        //$scope.userPosition = Main.getUser().position;
+            return 'pos' + task;
+        };
 
         $scope.pickTask = function(task){
 
@@ -131,11 +124,7 @@ angular.module('starter.controllers', [])
 
         };
 
-        var familyMembers;
-        //TODO ask Stian
-
-        Main.getFamily().then(function (x) {
-            familyMembers = x;
+        Main.getFamily().then(function(familyMembers) {
 
             //TODO: combine arrays
             var familyPath = new Array($scope.pathTasks.length);
@@ -149,7 +138,6 @@ angular.module('starter.controllers', [])
 
                 Users.getUser(entry.$value).then(function (x){
                     familyPath[x.position].push(x.$id);
-
 
                     console.log(familyPath)
 
