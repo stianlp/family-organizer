@@ -2,9 +2,6 @@ angular.module('starter.services', [])
 
     .factory('Main', function($firebaseObject, $firebaseArray) {
         var loggedInUser;
-        $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/id1')).$loaded().then(function(x) {
-            loggedInUser = x;
-        });
 
         var family;
         var famPath = [];
@@ -44,9 +41,8 @@ angular.module('starter.services', [])
         //}
     })
 
-    .factory('Users', function($firebaseArray, $firebaseObject) {
-        var ref = new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users');
-        var array = $firebaseArray(ref);
+    .factory('Users', function($firebaseArray, $firebaseObject, $q, Main) {
+        var array = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users'));
 
         return {
             getUsers: getUsers,
@@ -65,8 +61,37 @@ angular.module('starter.services', [])
         }
 
         function createUser(userData) {
-            array.$add(userData);
+            var deferred = $q.defer();
+            array.$add(userData).then(function(ref) {
+                Main.setUser(array[array.$indexFor(ref.key())]);
+                deferred.resolve('Success');
+            });
+            return deferred.promise;
         }
+
+    })
+
+    .factory('Families', function($firebaseArray, $firebaseObject) {
+        var families = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families'));
+
+        return {
+            getFamilies: getFamilies,
+            addUserToFamily: addUserToFamily
+        };
+
+        function getFamilies(){
+            return families;
+        }
+
+        function addUserToFamily(userId, familyId){
+            console.log(userId, familyId);
+            //var family = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId));
+            //family.users.$add(userId)
+        }
+        //
+        //function createUser(userData) {
+        //    array.$add(userData);
+        //}
 
     })
 

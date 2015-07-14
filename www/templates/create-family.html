@@ -1,0 +1,16 @@
+<ion-view view-title="Create a family">
+    <ion-content class="padding">
+        <ion-item>
+            <label class="item item-input">
+                <input type="text" ng-model="newFamily.username" placeholder="Family username">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model="newFamily.name" placeholder="Family name">
+            </label>
+            <button class="button button-full button-balanced" ng-click="create()">
+                Create new user
+            </button>
+            <p ng-show="newUserExist" class="error">The family exist, go back and join or try another family name!</p>
+        </ion-item>
+    </ion-content>
+</ion-view>

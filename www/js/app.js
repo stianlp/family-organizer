@@ -46,12 +46,23 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 controller: 'LoginCtrl'
             })
 
-            //TODO set family
-            //.state('task', {
-            //    url: "/task",
-            //    templateUrl: "templates/task.html",
-            //    controller: 'TaskCtrl'
-            //})
+            .state('join-create-family', {
+                url: "/join-create-family",
+                templateUrl: "templates/join-create-family.html",
+                controller: 'JoinCreateFamilyCtrl'
+            })
+
+            .state('create-family', {
+                url: "/create-family",
+                templateUrl: "templates/create-family.html",
+                controller: 'JoinCreateFamilyCtrl'
+            })
+
+            .state('join-family', {
+                url: "/join-family",
+                templateUrl: "templates/join-family.html",
+                controller: 'JoinCreateFamilyCtrl'
+            })
 
             .state('path', {
                 url: "/path",

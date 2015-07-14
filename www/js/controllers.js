@@ -26,6 +26,15 @@ angular.module('starter.controllers', [])
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
 
+        function family() {
+            if (Main.getUser().familyId !== -1) {
+                $state.go('path');
+            } else {
+                $state.go('join-create-family');
+            }
+        }
+
+
         $scope.login = function() {
             var index = _.findIndex(existingUsers, function(user) {
                 return user.username === $scope.existingUser.username;
@@ -33,7 +42,7 @@ angular.module('starter.controllers', [])
             if (index !== -1) {
                 $scope.existingUserNotExist = false;
                 Main.setUser(existingUsers[index]);
-                $state.go('path');
+                family();
             } else {
                 $scope.existingUserNotExist = true;
             }
@@ -46,12 +55,36 @@ angular.module('starter.controllers', [])
 
             if (index === -1) {
                 $scope.newUserExist = false;
-                Users.createUser($scope.newUser);
-                Main.setUser($scope.newUser); //TODO maybe we should get the correct object from server.
-                $state.go('path');
+                Users.createUser($scope.newUser).then(function(data) {
+                    family();
+                });
             } else {
                 $scope.newUserExist = true;
             }
+        };
+    })
+
+    .controller('JoinCreateFamilyCtrl', function($scope, $state, Main, Families) {
+        $scope.existingFamilies = Families.getFamilies();
+
+
+        /* Join family variables */
+        $scope.existingUser = { username: ''};
+        $scope.newFamily = { username: '',
+                             name: '',
+                             users: {}};
+
+        $scope.join = function(family) {
+            console.log(family);
+            Families.addUserToFamily(Main.getUser().$id, family.$id);
+        };
+
+        /* Create family variables */
+        $scope.existingUserNotExist = false;
+        $scope.newUserExist = false;
+
+        $scope.create = function() {
+
         };
     })
 
