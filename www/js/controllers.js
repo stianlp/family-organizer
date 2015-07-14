@@ -108,20 +108,22 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('PathCtrl', function($scope, $window, $state, Main) {
+    .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
         $scope.pathTasks = [0, 1, 2, 3];
+        $scope.getTheClass = function(task) {
+            console.log(task);
+            return 'pos' + task};
 
         //Main.getUser().$loaded().then(function(x) {
         //    $scope.userPosition = x.position;
         //});
 
-        $scope.userPosition = Main.getUser().position;
+        //$scope.userPosition = Main.getUser().position;
 
         $scope.pickTask = function(task){
 
             if ($scope.userPosition === task){
                 $state.go('task');
-                console.log(task);
             }
             else{
                 $window.alert("Finsh your task!!");
@@ -129,9 +131,37 @@ angular.module('starter.controllers', [])
 
         };
 
-        //$scope.familyMembers = Main.getFamily();
+        var familyMembers;
+        //TODO ask Stian
 
-        //TODO: combine arrays (too tired to think, sorry)
+        Main.getFamily().then(function (x) {
+            familyMembers = x;
+
+            //TODO: combine arrays
+            var familyPath = new Array($scope.pathTasks.length);
+            for (var i=0; i<familyPath.length; i++){
+                familyPath[i] = [];
+            }
+
+
+            familyMembers.forEach(function(entry){
+
+
+                Users.getUser(entry.$value).then(function (x){
+                    familyPath[x.position].push(x.$id);
+
+
+                    console.log(familyPath)
+
+                });
+
+                //familyPath[entry.position].push(entry.name);
+            });
+
+
+        });
+
+
 
     })
 

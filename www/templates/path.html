@@ -1,10 +1,14 @@
 <!--http://www.the-art-of-web.com/javascript/animate-curved-path/-->
 <ion-view view-title="Path">
-    <ion-content class="padding">
-        <ion-item collection-repeat="task in pathTasks" ng-class="{'highlight': task === userPosition}" >
-                <div  ng-click="pickTask(task)" >
-                    <p>{{task}}</p>
-                </div>
-            </ion-item>
+    < scroll="false">
+        <div class="path">
+        <div ng-repeat="task in pathTasks" class="redButton" ng-class="getTheClass(task)">
+            <!--<path attrval="true"></path>-->
+                <!--<div  ng-click="pickTask(task)" >-->
+                    <!--<p>{{task}}</p>-->
+                <!--</div>-->
+            <!--</ion-item>-->
+        </div>
+        </div>
     </ion-content>
 </ion-view>
