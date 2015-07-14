@@ -21,15 +21,14 @@ angular.module('starter.controllers', [])
                             age: '',
                             position: 0,
                             role: '',
+                            points: 0,
                             familyId: -1};
 
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
 
         function family() {
-            console.log(Main.getUser());
             if (Main.getUser().familyId !== -1) {
-                console.log('dsadas', typeof Main.getUser().familyId);
                 $state.go('path');
             } else {
                 $state.go('join-create-family');
@@ -147,7 +146,10 @@ angular.module('starter.controllers', [])
 
         });
 
-
+        $scope.updatePoints = function(points) {
+            console.log('in ctrl', points);
+            Users.receivePoints(points);
+        };
 
     })
 

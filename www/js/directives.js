@@ -24,4 +24,21 @@ angular.module('starter.directives', [])
             }
         };
 
+    })
+
+    .directive ('checkOwnTask', function(){
+        return {
+            scope: {
+                taskText: '=taskText',
+                points: '=points',
+                updatePoints: '='
+            },
+            template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+            link: function (scope) {
+                scope.done = function() {
+                    scope.updatePoints(scope.points);
+                };
+            }
+        };
+
     });

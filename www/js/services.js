@@ -54,7 +54,8 @@ angular.module('starter.services', [])
         return {
             getUsers: getUsers,
             getUser: getUser,
-            createUser: createUser
+            createUser: createUser,
+            receivePoints: receivePoints
         };
 
         function getUsers(){
@@ -67,7 +68,6 @@ angular.module('starter.services', [])
             var deferred = $q.defer();
             $firebaseObject(ref2).$loaded().then(function(x){
                 deferred.resolve(x);
-
             });
 
             return deferred.promise;
@@ -79,6 +79,13 @@ angular.module('starter.services', [])
                 deferred.resolve(array[array.$indexFor(ref.key())]);
             });
             return deferred.promise;
+        }
+
+        function receivePoints(points) {
+            var user = Main.getUser();
+            console.log(user.points, typeof user.points, points);
+            user.points += points;
+            user.$save();
         }
 
     })
