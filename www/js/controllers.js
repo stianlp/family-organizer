@@ -84,13 +84,13 @@ angular.module('starter.controllers', [])
 
         $scope.join = function(family) {
             console.log(family);
-            Families.addUserToFamily(Main.getUser().$id, family.$id);
+            Families.addUserToFamily(Main.getUser().$id, family.$id)
+                .then(function(data) {
+                    $state.go('path');
+                });
         };
 
         /* Create family variables */
-        $scope.existingUserNotExist = false;
-        $scope.newUserExist = false;
-
         $scope.create = function() {
 
         };

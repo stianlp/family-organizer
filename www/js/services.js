@@ -82,7 +82,7 @@ angular.module('starter.services', [])
 
     })
 
-    .factory('Families', function($firebaseArray, $firebaseObject, Main) {
+    .factory('Families', function($firebaseArray, $firebaseObject, Main, $q) {
         var families = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families'));
 
         return {
@@ -95,15 +95,16 @@ angular.module('starter.services', [])
         }
 
         function addUserToFamily(userId, familyId){
-            console.log(userId, familyId);
+            var deferred = $q.defer();
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId + '/users'))
                 .$loaded().then(function(ref) {
                     ref.$add(userId);
                     var user = Main.getUser();
                     user.familyId = familyId;
                     user.$save();
-
+                    deferred.resolve('Added to family');
                 });
+            return deferred.promise;
         }
         //
         //function createUser(userData) {
