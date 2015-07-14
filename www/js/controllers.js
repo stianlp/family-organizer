@@ -39,6 +39,7 @@ angular.module('starter.controllers', [])
             var index = _.findIndex(existingUsers, function(user) {
                 return user.username === $scope.existingUser.username;
             });
+
             if (index !== -1) {
                 $scope.existingUserNotExist = false;
                 Main.setUser(existingUsers[index]);
