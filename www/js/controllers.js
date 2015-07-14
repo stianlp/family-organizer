@@ -145,6 +145,10 @@ angular.module('starter.controllers', [])
 
         });
 
+        $scope.updatePoints = function(points) {
+            Users.receivePoints(points);
+        };
+
 
 
     })
