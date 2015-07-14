@@ -2,9 +2,9 @@ angular.module('starter.services', [])
 
     .factory('Main', function($firebaseObject, $firebaseArray, $q) {
         var loggedInUser;
+        var pathLength = 8;
 
         var family;
-        var famPath = [];
 
 
         //TODO handshake
@@ -13,15 +13,13 @@ angular.module('starter.services', [])
             setUser: setUser,
             getUser: getUser,
             getFamily: getFamily,
-            //getFamilyPath: getFamilyPath
+            getPathLength: getPathLength
         };
 
         function setUser(userId) {
-            //console.log("Set the user to:" + user.name);
             var deferred = $q.defer();
             $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/' + userId))
                 .$loaded().then(function(obj) {
-                    console.log('user set');
                     loggedInUser = obj;
                     deferred.resolve('User set!');
                 });
@@ -45,12 +43,9 @@ angular.module('starter.services', [])
             return deferred.promise;
         }
 
-        //function getFamilyPath(){
-        //    var famID = loggedInUser.familyId;
-        //    family = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID));
-        //
-        //}
-
+        function getPathLength(){
+            return pathLength;
+        }
     })
 
     .factory('Users', function($firebaseArray, $firebaseObject, $q, Main) {
@@ -101,7 +96,6 @@ angular.module('starter.services', [])
         }
 
         function addUserToFamily(userId, familyId){
-            console.log(userId, familyId);
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId + '/users'))
                 .$loaded().then(function(ref) {
                     ref.$add(userId);

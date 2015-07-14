@@ -97,7 +97,8 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
-        $scope.pathTasks = [0, 1, 2, 3];
+        $scope.pathTasks = [0, 1, 2, 3]
+        $scope.familyPath = [];
         $scope.getTheClass = function(task) {
             console.log(task);
             return 'pos' + task};
@@ -126,9 +127,9 @@ angular.module('starter.controllers', [])
             familyMembers = x;
 
             //TODO: combine arrays
-            var familyPath = new Array($scope.pathTasks.length);
-            for (var i=0; i<familyPath.length; i++){
-                familyPath[i] = [];
+            $scope.familyPath = new Array(8);
+            for (var i=0; i<$scope.familyPath.length; i++){
+                $scope.familyPath[i] = [];
             }
 
 
@@ -136,10 +137,7 @@ angular.module('starter.controllers', [])
 
 
                 Users.getUser(entry.$value).then(function (x){
-                    familyPath[x.position].push(x.$id);
-
-
-                    console.log(familyPath)
+                    $scope.familyPath[x.position].push(x.$id);
 
                 });
 
