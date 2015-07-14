@@ -26,7 +26,7 @@ angular.module('starter.directives', [])
             link: function (scope) {
                 scope.done = function() {
                     scope.updatePoints(points);
-                }
+                };
             }
         };
 
