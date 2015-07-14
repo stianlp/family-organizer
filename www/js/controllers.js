@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
 
         };
 
-        $scope.familyMembers = Main.getFamily();
+        //$scope.familyMembers = Main.getFamily();
 
         //TODO: combine arrays (too tired to think, sorry)
 
