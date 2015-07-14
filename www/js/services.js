@@ -83,6 +83,7 @@ angular.module('starter.services', [])
 
         function receivePoints(points) {
             var user = Main.getUser();
+            console.log(user.points, typeof user.points, points);
             user.points += points;
             user.$save();
         }

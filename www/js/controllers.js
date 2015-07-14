@@ -124,32 +124,29 @@ angular.module('starter.controllers', [])
 
         };
 
-        Main.getFamily().then(function(familyMembers) {
-
-            //TODO: combine arrays
-            $scope.familyPath = new Array(Main.getPathLength());
-            for (var i=0; i<$scope.familyPath.length; i++){
-                $scope.familyPath[i] = [];
-            }
-
-
-            familyMembers.forEach(function(entry){
-
-
-                Users.getUser(entry.$value).then(function (x){
-                    $scope.familyPath[x.position].push(x.$id);
-
-                });
-            });
-
-
-        });
+        //Main.getFamily().then(function(familyMembers) {
+        //
+        //    //TODO: combine arrays
+        //    $scope.familyPath = new Array(Main.getPathLength());
+        //    for (var i=0; i<$scope.familyPath.length; i++){
+        //        $scope.familyPath[i] = [];
+        //    }
+        //
+        //
+        //    familyMembers.forEach(function(entry){
+        //
+        //
+        //        Users.getUser(entry.$value).then(function (x){
+        //            $scope.familyPath[x.position].push(x.$id);
+        //
+        //        });
+        //    });
+        //});
 
         $scope.updatePoints = function(points) {
+            console.log('in ctrl', points);
             Users.receivePoints(points);
         };
-
-
 
     })
 
