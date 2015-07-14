@@ -17,10 +17,16 @@ angular.module('starter.directives', [])
 
     .directive ('check-own-task', function(){
         return {
-            scope: {},
-            template: '<div></div>',
-            link: function (scope, element) {
-                console.log("checkown task")
+            scope: {
+                taskText: '=taskText',
+                points: '=pts',
+                updatePoints: '&updatePoints'
+            },
+            template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+            link: function (scope) {
+                scope.done = function() {
+                    scope.updatePoints(points);
+                }
             }
         };
 

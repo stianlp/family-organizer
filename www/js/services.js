@@ -68,7 +68,6 @@ angular.module('starter.services', [])
             var deferred = $q.defer();
             $firebaseObject(ref2).$loaded().then(function(x){
                 deferred.resolve(x);
-
             });
 
             return deferred.promise;
