@@ -77,22 +77,34 @@ angular.module('starter.controllers', [])
 
 
         /* Join family variables */
-        $scope.existingUser = { username: ''};
-        $scope.newFamily = { username: '',
-                             name: '',
-                             users: {}};
-
+        $scope.search = '';
         $scope.join = function(family) {
-            console.log(family);
-            Families.addUserToFamily(Main.getUser().$id, family.$id)
-                .then(function(data) {
-                    $state.go('path');
-                });
+            Families.addUserToFamily(Main.getUser().$id, family.$id).then(function(data) {
+                $state.go('path');
+            });
         };
 
         /* Create family variables */
-        $scope.create = function() {
+        $scope.existingUser = { username: ''};
+        $scope.newFamily = { username: '',
+                             name: ''};
+        $scope.newFamilyExist = false;
 
+        $scope.create = function() {
+            var index = _.findIndex($scope.existingFamilies, function(family) {
+                return family.username === $scope.newFamily.username;
+            });
+
+            if (index === -1) {
+                $scope.newFamilyExist = false;
+                Families.createFamily($scope.newFamily).then(function(familyData) {
+                    Families.addUserToFamily(Main.getUser().$id, familyData.$id).then(function() {
+                        $state.go('path');
+                    });
+                });
+            } else {
+                $scope.newFamilyExist = true;
+            }
         };
     })
 
