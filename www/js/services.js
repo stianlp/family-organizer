@@ -28,10 +28,14 @@ angular.module('starter.services', [])
         //TODO get family members
         function getFamily(){
             var famID = loggedInUser.familyId;
-            family = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID));
+            var deferred = $q.defer();
+            $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID + '/users')).$loaded().then(function (x){
+                family = x;
+                console.log(x);
+                deferred.resolve(x);
+            });
 
-
-            return family;
+            return deferred.promise;
         }
 
         //function getFamilyPath(){
@@ -39,6 +43,7 @@ angular.module('starter.services', [])
         //    family = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID));
         //
         //}
+
     })
 
     .factory('Users', function($firebaseArray, $firebaseObject, $q, Main) {
