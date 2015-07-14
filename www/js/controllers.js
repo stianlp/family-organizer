@@ -96,8 +96,11 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('PathCtrl', function($scope, $window, $state, Main) {
+    .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
         $scope.pathTasks = [0, 1, 2, 3];
+        $scope.getTheClass = function(task) {
+            console.log(task);
+            return 'pos' + task};
 
         //Main.getUser().$loaded().then(function(x) {
         //    $scope.userPosition = x.position;
@@ -109,7 +112,6 @@ angular.module('starter.controllers', [])
 
             if ($scope.userPosition === task){
                 $state.go('task');
-                console.log(task);
             }
             else{
                 $window.alert("Finsh your task!!");
@@ -119,7 +121,7 @@ angular.module('starter.controllers', [])
 
         var familyMembers;
         //TODO ask Stian
-        console.log(Main.getFamily());
+
         Main.getFamily().then(function (x) {
             familyMembers = x;
 
@@ -131,8 +133,17 @@ angular.module('starter.controllers', [])
 
 
             familyMembers.forEach(function(entry){
-                console.log(entry.position)
-                familyPath[entry.position].push(entry.name);
+
+
+                Users.getUser(entry.$value).then(function (x){
+                    familyPath[x.position].push(x.$id);
+
+
+                    console.log(familyPath)
+
+                });
+
+                //familyPath[entry.position].push(entry.name);
             });
 
 

@@ -18,19 +18,47 @@
 }
 
 .path {
-    background: url("../img/path.png") no-repeat center center fixed ;
+    background: url("../img/path.png") no-repeat;
     background-size: 100% 100%;
     background-origin: border-box;
-
-
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
 .redButton {
-    position: fixed;
+    position: absolute;
     top: 92%;
     left: 10%;
     background: red;
     height: 20px;
     width: 20px;
 
+}
+
+.pos0 {
+    top: 92%;
+    left: 10%;
+    background-color: #007aff;
+
+}
+
+.pos1 {
+     top: 79%;
+     left: 58%;
+     background-color: #28a54c;
+ }
+
+.pos2 {
+    top: 68%;
+    left: 90%;
+    background-color: #ffc900;
+}
+
+.pos3 {
+    top: 62%;
+    left: 10%;
+    background-color: deeppink;
 }

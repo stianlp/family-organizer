@@ -35,12 +35,10 @@ angular.module('starter.services', [])
         //TODO get family members
         function getFamily(){
 
-            console.log(loggedInUser);
             var famID = loggedInUser.familyId;
             var deferred = $q.defer();
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID + '/users')).$loaded().then(function (x){
                 family = x;
-                console.log(x);
                 deferred.resolve(x);
             });
 
@@ -70,8 +68,14 @@ angular.module('starter.services', [])
 
         function getUser(id){
             var ref2 = new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/' + id);
-            var selUser = $firebaseObject(ref2);
-            return selUser;
+
+            var deferred = $q.defer();
+            $firebaseObject(ref2).$loaded().then(function(x){
+                deferred.resolve(x);
+
+            });
+
+            return deferred.promise;
         }
 
         function createUser(userData) {
@@ -107,10 +111,6 @@ angular.module('starter.services', [])
 
                 });
         }
-        //
-        //function createUser(userData) {
-        //    array.$add(userData);
-        //}
 
     })
 
