@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
                 $state.go('task');
             }
             else{
-                $window.alert("Finsh your task!!");
+                $window.alert("Finish your task!!");
             }
 
         };
@@ -128,7 +128,7 @@ angular.module('starter.controllers', [])
         Main.getFamily().then(function(familyMembers) {
 
             //TODO: combine arrays
-            $scope.familyPath = new Array(8);
+            $scope.familyPath = new Array(Main.getPathLength());
             for (var i=0; i<$scope.familyPath.length; i++){
                 $scope.familyPath[i] = [];
             }

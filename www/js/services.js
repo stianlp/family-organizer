@@ -95,7 +95,7 @@ angular.module('starter.services', [])
         function getFamilies(){
             return families;
         }
-        
+
         function addUserToFamily(userId, familyId) {
             var deferred = $q.defer();
             $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId + '/users'))
