@@ -54,7 +54,8 @@ angular.module('starter.services', [])
         return {
             getUsers: getUsers,
             getUser: getUser,
-            createUser: createUser
+            createUser: createUser,
+            receivePoints: receivePoints
         };
 
         function getUsers(){
@@ -79,6 +80,12 @@ angular.module('starter.services', [])
                 deferred.resolve(array[array.$indexFor(ref.key())]);
             });
             return deferred.promise;
+        }
+
+        function receivePoints(points) {
+            var user = Main.getUser();
+            user.points += points;
+            user.$save();
         }
 
     })

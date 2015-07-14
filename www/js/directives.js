@@ -13,4 +13,15 @@ angular.module('starter.directives', [])
             }
         };
 
+    })
+
+    .directive ('check-own-task', function(){
+        return {
+            scope: {},
+            template: '<div></div>',
+            link: function (scope, element) {
+                console.log("checkown task")
+            }
+        };
+
     });
