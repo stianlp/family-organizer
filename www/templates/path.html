@@ -1,16 +1,12 @@
 <!--http://www.the-art-of-web.com/javascript/animate-curved-path/-->
 <ion-view view-title="Path">
-    < scroll="false">
+    <ion-content scroll="false">
         <div class="path">
-        <div ng-repeat="arrayfam in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="arrayfam.length > 0">
-            <path members="arrayfam"></path>
-            <!--<path attrval="true"></path>-->
-                <!--<div  ng-click="pickTask(task)" >-->
-                    <!--<p>{{task}}</p>-->
-                <!--</div>-->
-            <!--</ion-item>-->
+            <div ng-repeat="arrayfam in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="arrayfam.length > 0">
+                <path members="arrayfam" user="user" open="open">
+                </path>
+            </div>
         </div>
-        </div>
-        <!--<check-own-task task-text="true" update-points="updatePoints"></check-own-task>-->
+        <check-own-task ng-show="openzz" open="openzz" task-text="taskText" update-points="updatePoints"></check-own-task>
     </ion-content>
 </ion-view>

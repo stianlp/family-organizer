@@ -107,6 +107,14 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
+        $scope.user = Main.getUser();
+        $scope.open = false;
+        $scope.taskText = 'hello';
+
+        $scope.$watch('open', function() {
+            console.log("openedn in ctrl", $scope.open);
+        });
+
         $scope.pathTasks = [0, 1, 2, 3]
         $scope.familyPath = [];
         $scope.getTheClass = function(task) {

@@ -2,25 +2,24 @@ angular.module('starter.directives', [])
     .directive ('path', function(){
         return {
             scope: {
-                members: '=members'
-
+                members: '=members',
+                user: '=user',
+                open: '=open'
             },
-            template: '<div class="memberPosition"><div ng-repeat="member in members">{{member}}</div></div>',
-            link: function (scope, element) {
-                //console.log("sdaasdsad")
-                //console.log(scope.val);
+            template: '<div class="memberPosition"><div ng-repeat="member in members" ng-click="openIt(member)">{{member}}</div></div>',
+            link: function (scope) {
+                console.log(scope.user);
+                scope.openIt = function(member) {
+                    if (member === scope.user.$id) {
+                        console.log("clicked my user");
+                        scope.open = true;
+                        console.log(scope.open);
+                        scope.$evalAsync();
 
-                //if (scope.members.length > 0){
-                //    scope.members.forEach(function(entry){
-                //        element.append(entry);
-                //        //element.css("padding-bottom", "300px");
-                //        console.log(entry);
-                //    })
-                //}
-
-                console.log(scope.members);
-
-                //element.css("top", "10%")
+                    } else {
+                        console.log('clciked something else');
+                    }
+                };
             }
         };
 
@@ -29,14 +28,21 @@ angular.module('starter.directives', [])
     .directive ('checkOwnTask', function(){
         return {
             scope: {
-                taskText: '=taskText',
-                points: '=points',
-                updatePoints: '='
+                taskText: '=',
+                //points: '=points',
+                updatePoints: '=',
+                open: '='
+
             },
             template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
             link: function (scope) {
+
+                scope.$watch('open', function() {
+                    console.log(scope.open);
+                });
                 scope.done = function() {
-                    scope.updatePoints(scope.points);
+                    console.log('hey');
+                    scope.updatePoints(10);
                 };
             }
         };
