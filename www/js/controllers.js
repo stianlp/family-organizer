@@ -27,7 +27,9 @@ angular.module('starter.controllers', [])
         $scope.newUserExist = false;
 
         function family() {
+            console.log(Main.getUser());
             if (Main.getUser().familyId !== -1) {
+                console.log('dsadas', typeof Main.getUser().familyId);
                 $state.go('path');
             } else {
                 $state.go('join-create-family');
@@ -42,8 +44,10 @@ angular.module('starter.controllers', [])
 
             if (index !== -1) {
                 $scope.existingUserNotExist = false;
-                Main.setUser(existingUsers[index]);
-                family();
+                //TODO some bug here!!!
+                Main.setUser(existingUsers[index].$id).then(function() {
+                    family();
+                });
             } else {
                 $scope.existingUserNotExist = true;
             }
@@ -57,7 +61,10 @@ angular.module('starter.controllers', [])
             if (index === -1) {
                 $scope.newUserExist = false;
                 Users.createUser($scope.newUser).then(function(data) {
-                    family();
+                    console.log(data);
+                    Main.setUser(data.$id).then(function() {
+                        family();
+                    });
                 });
             } else {
                 $scope.newUserExist = true;

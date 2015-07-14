@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-    .factory('Main', function($firebaseObject, $firebaseArray) {
+    .factory('Main', function($firebaseObject, $firebaseArray, $q) {
         var loggedInUser;
 
         var family;
@@ -16,9 +16,16 @@ angular.module('starter.services', [])
             //getFamilyPath: getFamilyPath
         };
 
-        function setUser(user) {
-            console.log("Set the user to:" + user.name);
-            loggedInUser = user;
+        function setUser(userId) {
+            //console.log("Set the user to:" + user.name);
+            var deferred = $q.defer();
+            $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/' + userId))
+                .$loaded().then(function(obj) {
+                    console.log('user set');
+                    loggedInUser = obj;
+                    deferred.resolve('User set!');
+                });
+            return deferred.promise;
         }
 
         function getUser(){
@@ -63,15 +70,14 @@ angular.module('starter.services', [])
         function createUser(userData) {
             var deferred = $q.defer();
             array.$add(userData).then(function(ref) {
-                Main.setUser(array[array.$indexFor(ref.key())]);
-                deferred.resolve('Success');
+                deferred.resolve(array[array.$indexFor(ref.key())]);
             });
             return deferred.promise;
         }
 
     })
 
-    .factory('Families', function($firebaseArray, $firebaseObject) {
+    .factory('Families', function($firebaseArray, $firebaseObject, Main) {
         var families = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families'));
 
         return {
@@ -85,8 +91,14 @@ angular.module('starter.services', [])
 
         function addUserToFamily(userId, familyId){
             console.log(userId, familyId);
-            //var family = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId));
-            //family.users.$add(userId)
+            $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + familyId + '/users'))
+                .$loaded().then(function(ref) {
+                    ref.$add(userId);
+                    var user = Main.getUser();
+                    user.familyId = familyId;
+                    user.$save();
+
+                });
         }
         //
         //function createUser(userData) {
