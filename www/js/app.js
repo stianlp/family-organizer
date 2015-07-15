@@ -76,6 +76,12 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 controller: 'TaskCtrl'
             })
 
+            .state('scoreboard', {
+                url: "/scoreboard",
+                templateUrl: "templates/scoreboard.html",
+                controller: 'ScoreboardCtrl'
+            })
+
             // Each tab has its own nav history stack:
 
             .state('tab.dash', {
