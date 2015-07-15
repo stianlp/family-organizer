@@ -175,3 +175,41 @@
 .pointsStyle {
     margin: 10px;
 }
+
+.selected-task {
+    color: #d4081a;
+}
+
+.task-icon {
+    display: table;
+    margin: 12px auto;
+    font-size: 48px;
+}
+
+.task-text {
+    font-size: 16px;
+}
+
+.family-member-icon {
+    display: table;
+    margin: 6px auto;
+    font-size: 40px;
+}
+
+.family-member-text {
+    font-size: 8px;
+}
+
+
+/* Helper classes for reuse */
+.center-text {
+    text-align: center;
+}
+
+.button.disabled {
+    filter: Alpha(Opacity=30);
+    opacity: .3;
+    zoom: 1;
+    cursor: default !important;
+    pointer-events: none;
+}

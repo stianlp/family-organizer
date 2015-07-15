@@ -163,15 +163,29 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('Tasks', function($firebaseObject) {
-        var array = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks/task1'));
+    .factory('Tasks', function($firebaseArray, $q) {
+        var tasks = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks'));
+
+        console.log(tasks);
 
         return {
-            getTask: getTask
+            getTask: getTask,
+            getTasks: getTasks
         };
 
+
+        //TODO remove or change?
         function getTask() {
-            return array;
+            return tasks;
+        }
+
+        function getTasks() {
+            var deferred = $q.defer();
+            tasks.$loaded().then(function(ref) {
+                console.log(ref);
+                deferred.resolve(ref);
+            });
+            return deferred.promise;
         }
     })
 

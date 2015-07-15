@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
                             role: '',
                             points: 0,
                             familyId: -1,
-                            avatar: 'mdi mdi-emoticon'};
+                            avatar: 'mdi-emoticon'};
 
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
@@ -155,36 +155,40 @@ angular.module('starter.controllers', [])
 
     })
 
+    .controller('AssignTaskCtrl', function($scope, Main, Tasks) {
+        Tasks.getTasks().then(function(tasks) {
+            $scope.tasks = tasks;
+        });
+
+        Main.getFamily().then(function(family) {
+            $scope.family = family;
+            $scope.famCol = "col-" + family.length/100;
+        });
+
+        $scope.selectedTask = -1;
+        $scope.selectedFamilyMember = -1;
+
+        $scope.selectTask = function(index) {
+            $scope.selectedTask = index;
+        };
+
+        $scope.selectFamilyMember = function(index) {
+            $scope.selectedFamilyMember = index;
+        };
+
+        $scope.assignTask = function() {
+            if ($scope.selectedTask === -1 || $scope.selectedFamilyMember === -1) return;
+
+            
+        };
+    })
+
+    //TODO remove???
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
         //TODO add logic here
-        Tasks.getTask().$loaded().then(function(x) {
-            $scope.task = x.task;
-        });
-    })
-
-    .controller('ChatsCtrl', function($scope, Chats) {
-        // With the new view caching in Ionic, Controllers are only called
-        // when they are recreated or on app start, instead of every page change.
-        // To listen for when this page is active (for example, to refresh data),
-        // listen for the $ionicView.enter event:
-        //
-        //$scope.$on('$ionicView.enter', function(e) {
+        //Tasks.getTask().$loaded().then(function(x) {
+        //    $scope.task = x.task;
         //});
-
-        $scope.chats = Chats.all();
-        $scope.remove = function(chat) {
-            Chats.remove(chat);
-        }
-    })
-
-    .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-        $scope.chat = Chats.get($stateParams.chatId);
-    })
-
-    .controller('AccountCtrl', function($scope) {
-        $scope.settings = {
-            enableFriends: true
-        };
     })
 
 
@@ -204,8 +208,4 @@ angular.module('starter.controllers', [])
         $scope.getAvatar = function(user){
             return user.avatar;
         }
-
-
-
-
     });
