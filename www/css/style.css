@@ -110,13 +110,27 @@
     font-size: 48px;
 }
 
-.avatar {
+.assign-task, .scoreboard, .scoreboard-family {
     position: absolute;
-    bottom: 1%;
-    right: 8%;
-    width: 30px;
-    height: 30px;
-    background-color: #11c1f3;
+
+}
+
+.assign-task {
+    font-size: 48px;
+    right: 34%;
+    bottom: 10px;
+}
+
+.scoreboard {
+    font-size: 48px;
+    right: 20%;
+    bottom: 10px;
+}
+
+.scoreboard-family {
+    font-size: 55px;
+    right: 4%;
+    bottom: 6px;
 }
 
 .avatarPart {

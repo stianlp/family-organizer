@@ -5,7 +5,15 @@
             <div ng-repeat="members in familyPath track by $index" class="group-of-members-path" ng-class="getPositionClass($index)" ng-show="members.length > 0">
                 <family-members-on-path members="members" user="currentUser" update-points="updatePoints"></family-members-on-path>
             </div>
-            <div class = "avatar" ng-class="avatar" ui-sref="scoreboard"></div>
+            <div class="assign-task" ui-sref="assign-task">
+                <i class="mdi mdi-plus-circle-outline"></i>
+            </div>
+            <div class="scoreboard" ui-sref="scoreboard">
+                <i class="mdi mdi-account"></i>
+            </div>
+            <div class="scoreboard-family">
+                <i class="mdi mdi-account-multiple"></i>
+            </div>
         </div>
     </ion-content>
 </ion-view>
