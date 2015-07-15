@@ -24,18 +24,12 @@ angular.module('starter.directives', [])
             link: function (scope) {
                 scope.taskIsOpen =  false;
                 scope.openTask = function() {
-                    console.log(scope.member, scope.user);
-                    if (scope.member === scope.user.$id) {
-                        console.log("clicked my user");
+                    if (scope.member.$id === scope.user.$id) {
                         scope.taskIsOpen = true;
-
-                    } else {
-                        console.log('clciked something else');
                     }
                 };
 
-                scope.done = function() {
-                    console.log('task is done');
+                scope.doneTask = function() {
                     scope.updatePoints(scope.user.task.points);
                     scope.taskIsOpen = false;
                 };

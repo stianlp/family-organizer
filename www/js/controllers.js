@@ -111,28 +111,14 @@ angular.module('starter.controllers', [])
 
         $scope.currentUser.task = {task: 'sometask', points: 10};
 
-        $scope.pathTasks = [0, 1, 2, 3]
         $scope.familyPath = [];
         $scope.getTheClass = function(task) {
             return 'pos' + task;
         };
 
         $scope.updatePoints = function(points) {
-            console.log('in ctrl', points);
             Users.receivePoints(points);
         };
-
-        //$scope.pickTask = function(task){
-        //
-        //    if ($scope.userPosition === task){
-        //        $state.go('task');
-        //    }
-        //    else{
-        //        $window.alert("Finish your task!!");
-        //    }
-        //
-        //};
-
 
         Main.getFamily().then(function(familyMembers) {
 
@@ -142,13 +128,11 @@ angular.module('starter.controllers', [])
             }
             familyMembers.forEach(function(entry){
 
-                Users.getUser(entry.$value).then(function (x){
-                    console.log(x)
-                    $scope.familyPath[x.position].push(x.$id);
+                Users.getUser(entry.$value).then(function (member){
+                    $scope.familyPath[member.position].push(member);
 
                 });
             });
-
 
         });
     })
@@ -159,7 +143,6 @@ angular.module('starter.controllers', [])
             $scope.task = x.task;
         });
 
-        console.log("were here");
     })
 
 
