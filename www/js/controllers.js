@@ -107,10 +107,10 @@ angular.module('starter.controllers', [])
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
 
         /* Comment this line if you want to refresh from path view*/
-        //$scope.currentUser = Main.getUser();
+        $scope.currentUser = Main.getUser();
         /* Uncomment this stuff if you want to refresh from path view */
-        Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
-            $scope.currentUser = user;
+        //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
+        //    $scope.currentUser = user;
             $scope.currentUser.task = {task: 'Clean you bathroom', points: 14};
 
             $scope.familyPath = new Array(Main.getPathLength());
@@ -126,7 +126,7 @@ angular.module('starter.controllers', [])
                 updateFamilyPath();
             });
 
-        });
+        //});
 
         function updateFamilyPath() {
             console.log('dsadsadas')
