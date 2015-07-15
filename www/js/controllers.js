@@ -183,16 +183,6 @@ angular.module('starter.controllers', [])
         };
     })
 
-    //TODO remove???
-    .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
-        //TODO add logic here
-        //Tasks.getTask().$loaded().then(function(x) {
-        //    $scope.task = x.task;
-        //});
-    })
-
-
-
     .controller('ScoreboardCtrl', function($scope, Main, Users){
         $scope.currentUser = Main.getUser();
 
@@ -208,4 +198,6 @@ angular.module('starter.controllers', [])
         $scope.getAvatar = function(user){
             return user.avatar;
         }
+
+        $scope.goals = [{name:'Bicycle', points: 2000},{name:'Cinema ticket', points: 1000}, {name:'Rayman', points: 4000}]
     });
