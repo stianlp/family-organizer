@@ -151,6 +151,11 @@ angular.module('starter.controllers', [])
             Users.receivePoints(points);
         };
 
+        $scope.scoreboard = function(){
+
+                $state.go('scoreboard');
+        };
+
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
@@ -195,4 +200,12 @@ angular.module('starter.controllers', [])
         $scope.settings = {
             enableFriends: true
         };
+    })
+
+
+
+    .controller('ScoreboardCtrl', function($scope){
+
+
+
     });

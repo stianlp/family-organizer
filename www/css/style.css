@@ -65,3 +65,12 @@
 .memberPosition {
     width: 200px;
 }
+
+.avatar {
+    position: absolute;
+    bottom: 1%;
+    right: 8%;
+    width: 30px;
+    height: 30px;
+    background-color: #11c1f3;
+}

@@ -135,4 +135,9 @@ angular.module('starter.services', [])
         function getTask() {
             return array;
         }
-    });
+    })
+
+    .factory('Scoreboard', function($firebaseObject) {
+
+
+    })
