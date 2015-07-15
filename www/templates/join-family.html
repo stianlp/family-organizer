@@ -4,11 +4,11 @@
             <div class="list list-inset">
                 <label class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="text" placeholder="Search" ng-model="search">
+                    <input type="text" placeholder="Search" ng-model="search.search">
                 </label>
             </div>
         </ion-item>
-        <ion-item collection-repeat="family in existingFamilies" ng-click="join(family)">
+        <ion-item collection-repeat="family in existingFamilies  | filter:{username:search.search}" ng-click="join(family)">
             <h2>{{family.username}}</h2>
             <p>Family name: {{family.name}}</p>
         </ion-item>
