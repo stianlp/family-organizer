@@ -63,16 +63,16 @@
     background-color: deeppink;
 }
 
-.memberPosition {
+.membersPosition {
     width: 200px;
 }
 
-check-own-task {
+.show-the-task {
     position: fixed;
-    background: red;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    background: #FFFFFF;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
 
 }

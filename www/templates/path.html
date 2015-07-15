@@ -2,11 +2,9 @@
 <ion-view view-title="Path">
     <ion-content scroll="false">
         <div class="path">
-            <div ng-repeat="arrayfam in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="arrayfam.length > 0">
-                <path members="arrayfam" user="user" open="open">
-                </path>
+            <div ng-repeat="members in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="members.length > 0">
+                <family-members-on-path members="members" user="currentUser" update-points="updatePoints"></family-members-on-path>
             </div>
         </div>
-        <check-own-task ng-show="openzz" open="openzz" task-text="taskText" update-points="updatePoints"></check-own-task>
     </ion-content>
 </ion-view>

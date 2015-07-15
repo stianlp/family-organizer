@@ -1,50 +1,66 @@
 angular.module('starter.directives', [])
-    .directive ('path', function(){
+    .directive ('familyMembersOnPath', function(){
         return {
             scope: {
                 members: '=members',
                 user: '=user',
-                open: '=open'
+                updatePoints: '=updatePoints'
             },
-            template: '<div class="memberPosition"><div ng-repeat="member in members" ng-click="openIt(member)">{{member}}</div></div>',
+            templateUrl: 'templates/family-members-on-path.html',
             link: function (scope) {
-                console.log(scope.user);
-                scope.openIt = function(member) {
-                    if (member === scope.user.$id) {
-                        console.log("clicked my user");
-                        scope.open = true;
-                        console.log(scope.open);
-                        scope.$evalAsync();
-
-                    } else {
-                        console.log('clciked something else');
-                    }
-                };
             }
         };
 
     })
 
-    .directive ('checkOwnTask', function(){
+    .directive ('familyMemberOnPath', function(){
         return {
             scope: {
-                taskText: '=',
-                //points: '=points',
-                updatePoints: '=',
-                open: '='
-
+                member: '=member',
+                user: '=user',
+                updatePoints: '=updatePoints'
             },
-            template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+            templateUrl: 'templates/family-member-on-path.html',
             link: function (scope) {
+                scope.taskIsOpen =  false;
+                scope.openTask = function() {
+                    console.log(scope.member, scope.user);
+                    if (scope.member === scope.user.$id) {
+                        console.log("clicked my user");
+                        scope.taskIsOpen = true;
 
-                scope.$watch('open', function() {
-                    console.log(scope.open);
-                });
+                    } else {
+                        console.log('clciked something else');
+                    }
+                };
+
                 scope.done = function() {
-                    console.log('hey');
-                    scope.updatePoints(10);
+                    console.log('task is done');
+                    scope.updatePoints(scope.user.task.points);
+                    scope.taskIsOpen = false;
                 };
             }
         };
-
     });
+
+    //.directive ('checkOwnTask', function(){
+    //    return {
+    //        scope: {
+    //            taskText: '=',
+    //            //points: '=points',
+    //            updatePoints: '=',
+    //            open: '='
+    //
+    //        },
+    //        template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+    //        link: function (scope) {
+    //
+    //            scope.$watch('open', function() {
+    //                console.log(scope.open);
+    //            });
+    //            scope.done = function() {
+    //                console.log('hey');
+    //                scope.updatePoints(10);
+    //            };
+    //        }
+    //    };

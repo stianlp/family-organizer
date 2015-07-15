@@ -107,13 +107,9 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
-        $scope.user = Main.getUser();
-        $scope.open = false;
-        $scope.taskText = 'hello';
+        $scope.currentUser = Main.getUser();
 
-        $scope.$watch('open', function() {
-            console.log("openedn in ctrl", $scope.open);
-        });
+        $scope.currentUser.task = {task: 'sometask', points: 10};
 
         $scope.pathTasks = [0, 1, 2, 3]
         $scope.familyPath = [];
@@ -121,28 +117,30 @@ angular.module('starter.controllers', [])
             return 'pos' + task;
         };
 
-        $scope.pickTask = function(task){
-
-            if ($scope.userPosition === task){
-                $state.go('task');
-            }
-            else{
-                $window.alert("Finish your task!!");
-            }
-
+        $scope.updatePoints = function(points) {
+            console.log('in ctrl', points);
+            Users.receivePoints(points);
         };
+
+        //$scope.pickTask = function(task){
+        //
+        //    if ($scope.userPosition === task){
+        //        $state.go('task');
+        //    }
+        //    else{
+        //        $window.alert("Finish your task!!");
+        //    }
+        //
+        //};
+
 
         Main.getFamily().then(function(familyMembers) {
 
-            //TODO: combine arrays
             $scope.familyPath = new Array(Main.getPathLength());
             for (var i=0; i<$scope.familyPath.length; i++){
                 $scope.familyPath[i] = [];
             }
-
-
             familyMembers.forEach(function(entry){
-
 
                 Users.getUser(entry.$value).then(function (x){
                     console.log(x)
@@ -153,12 +151,6 @@ angular.module('starter.controllers', [])
 
 
         });
-
-        $scope.updatePoints = function(points) {
-            console.log('in ctrl', points);
-            Users.receivePoints(points);
-        };
-
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
