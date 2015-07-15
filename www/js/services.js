@@ -10,23 +10,27 @@ angular.module('starter.services', [])
         return {
             setUser: setUser,
             getUser: getUser,
+            setFamily: setFamily,
             getFamily: getFamily,
             getPathLength: getPathLength,
             getFamilyName: getFamilyName
         };
 
-        /* Private helper function to set up family members */
         function setFamily() {
             var deferred = $q.defer();
-            $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + loggedInUser.familyId + '/users'))
-                .$loaded().then(function (family) {
-                    _.forEach(family, function(memberId) {
-                        Users.getUser(memberId.$value).then(function (member) {
-                            loggedInUsersFamily.push(member);
-                            deferred.resolve('Family set');
+            if (loggedInUser && loggedInUser.familyId !== -1) {
+                $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + loggedInUser.familyId + '/users'))
+                    .$loaded().then(function (family) {
+                        _.forEach(family, function(memberId) {
+                            Users.getUser(memberId.$value).then(function (member) {
+                                loggedInUsersFamily.push(member);
+                                deferred.resolve('Family set');
+                            });
                         });
-                    });
-            });
+                });
+            } else {
+                deferred.resolve('-1 no family to set');
+            }
             return deferred.promise;
         }
 
