@@ -11,7 +11,8 @@ angular.module('starter.services', [])
             setUser: setUser,
             getUser: getUser,
             getFamily: getFamily,
-            getPathLength: getPathLength
+            getPathLength: getPathLength,
+            getFamilyName: getFamilyName
         };
 
         /* Private helper function to set up family members */
@@ -51,6 +52,17 @@ angular.module('starter.services', [])
             return deferred.promise;
         }
 
+        function getFamilyName(){
+            var famID = loggedInUser.familyId;
+            var deferred = $q.defer();
+            $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID + '/name')).$loaded().then(function (x){
+                console.log(x);
+                deferred.resolve(x);
+            });
+
+            return deferred.promise;
+        }
+
         function getPathLength(){
             return pathLength;
         }
@@ -63,7 +75,8 @@ angular.module('starter.services', [])
             getUsers: getUsers,
             getUser: getUser,
             createUser: createUser,
-            receivePoints: receivePoints
+            receivePoints: receivePoints,
+            getPoints: getPoints
         };
 
         function getUsers(){
@@ -98,6 +111,16 @@ angular.module('starter.services', [])
             }
             user.$save();
         }
+
+        function getPoints(id) {
+            var ref2 = new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/' + id);
+
+            $firebaseObject(ref2).$loaded().then(function(x){
+                return (x.points);
+            });
+
+        }
+
 
     })
 
