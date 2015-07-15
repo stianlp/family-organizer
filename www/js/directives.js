@@ -12,6 +12,18 @@ angular.module('starter.directives', [])
         };
 
     })
+    .directive ('progressBar', function(){
+    return {
+        scope: {
+            goal: '=goal',
+            userPoints: '=userPoints'
+        },
+        template: '<progress max="100" ng-value="userPoints/goal.points*100"> <div class="progress-bar"> <span ng-style="width: {value}%;"></span> </div></progress>',
+        link: function (scope) {
+        }
+    };
+
+})
 
     .directive ('familyMemberOnPath', function($timeout){
         return {
@@ -42,4 +54,4 @@ angular.module('starter.directives', [])
                 };
             }
         };
-    });
+    })

@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <div style="border: none">
                 <div class="avatarPart">
-                    <i ng-class="getAvatar(currentUser)"></i>  <!-- bell -->
+                    <i class="mdi" ng-class="getAvatar(currentUser)"></i>  <!-- bell -->
                     <h2>{{currentUser.name}}</h2>
                     <p>{{familyName}}</p>
                 </div>
@@ -10,6 +10,11 @@
                 <i class="mdi mdi-star-circle"></i>
                 <h2 class="pointsStyle" >{{points}}</h2>
             </div>
+            <div ng-repeat="goal in goals">
+                <div style="display: table; margin: 0auto"> <div class="goalName">{{goal.name}}</div><div class="totalPoints">{{goal.points}}</div></div>
+                <progress-bar goal="goal" user-points="currentUser.points"></progress-bar>
+            </div>
+
         </div>
 
     </ion-content>

@@ -205,6 +205,15 @@ angular.module('starter.controllers', [])
             return user.avatar;
         }
 
+        //$scope.goals = $scope.currentUser.goals;
+        $scope.goals = [{name:'Bicycle', points: 2000},{name:'Cinema ticket', points: 1000}, {name:'Rayman', points: 4000}]
+
+        //$scope.getPercentageGoal(goal){
+        //
+        //}
+
+
+
 
 
 
