@@ -1,8 +1,16 @@
 <div class="" ng-click="openTask()">
+    <i class="mdi mdi-account"></i>
     {{member.name}}
 </div>
 <div class="show-the-task" ng-show="taskIsOpen">
-    <p>{{user.task.task}}</p>
-    <h1>{{user.task.points}}</h1>
-    <div ng-click="doneTask()">CLICK</div>
+    <div class="close-circle" ng-click="taskIsOpen = !taskIsOpen">
+        <i class="mdi mdi-close-circle-outline"></i>
+    </div>
+    <p class="task-text">{{user.task.task}}</p>
+    <h1 class="task-text points">{{user.task.points}} pts</h1>
+    <div class="task-done" ng-click="doneTask()">
+        <i ng-show="checkOff == 1" class="mdi mdi-checkbox-marked-circle-outline"></i>
+        <i ng-show="checkOff == 2" class="mdi mdi-checkbox-marked-circle"></i>
+        <i ng-show="checkOff == 3" class="mdi mdi-star-circle"></i>
+    </div>
 </div>

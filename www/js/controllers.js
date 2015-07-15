@@ -43,7 +43,6 @@ angular.module('starter.controllers', [])
 
             if (index !== -1) {
                 $scope.existingUserNotExist = false;
-                //TODO some bug here!!!
                 Main.setUser(existingUsers[index].$id).then(function() {
                     family();
                 });
@@ -60,7 +59,6 @@ angular.module('starter.controllers', [])
             if (index === -1) {
                 $scope.newUserExist = false;
                 Users.createUser($scope.newUser).then(function(data) {
-                    console.log(data);
                     Main.setUser(data.$id).then(function() {
                         family();
                     });
@@ -107,34 +105,48 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
+
+        /* Comment this line if you want to refresh from path view*/
         $scope.currentUser = Main.getUser();
+        /* Uncomment this stuff if you want to refresh from path view */
+        //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
+        //    $scope.currentUser = user;
+            $scope.currentUser.task = {task: 'Clean you bathroom', points: 14};
 
-        $scope.currentUser.task = {task: 'sometask', points: 10};
+            $scope.familyPath = new Array(Main.getPathLength());
 
-        $scope.familyPath = [];
-        $scope.getTheClass = function(task) {
+            Main.getFamily().then(function(familyMembers) {
+                $scope.family = familyMembers;
+                console.log(familyMembers)
+                _.forEach(familyMembers, function(member) {
+                    member.$watch(function(d) {
+                        updateFamilyPath();
+                    });
+                });
+                updateFamilyPath();
+            });
+
+        //});
+
+        function updateFamilyPath() {
+            console.log('dsadsadas')
+            $scope.familyPath = new Array(Main.getPathLength());
+            _.forEach($scope.family, function(member) {
+                if ($scope.familyPath[member.position] === undefined) {
+                    $scope.familyPath[member.position] = [];
+                }
+                $scope.familyPath[member.position].push(member);
+            });
+        }
+
+        $scope.getPositionClass = function(task) {
             return 'pos' + task;
         };
 
         $scope.updatePoints = function(points) {
-            Users.receivePoints(points);
+            Users.receivePoints($scope.currentUser, points, Main.getPathLength()-1);
         };
 
-        Main.getFamily().then(function(familyMembers) {
-
-            $scope.familyPath = new Array(Main.getPathLength());
-            for (var i=0; i<$scope.familyPath.length; i++){
-                $scope.familyPath[i] = [];
-            }
-            familyMembers.forEach(function(entry){
-
-                Users.getUser(entry.$value).then(function (member){
-                    $scope.familyPath[member.position].push(member);
-
-                });
-            });
-
-        });
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {

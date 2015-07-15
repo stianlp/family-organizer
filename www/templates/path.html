@@ -2,7 +2,7 @@
 <ion-view view-title="Path">
     <ion-content scroll="false">
         <div class="path">
-            <div ng-repeat="members in familyPath track by $index" class="redButton" ng-class="getTheClass($index)" ng-show="members.length > 0">
+            <div ng-repeat="members in familyPath track by $index" class="group-of-members-path" ng-class="getPositionClass($index)" ng-show="members.length > 0">
                 <family-members-on-path members="members" user="currentUser" update-points="updatePoints"></family-members-on-path>
             </div>
             <div class = "avatar" ng-class="avatar" ui-sref="scoreboard"></div>
