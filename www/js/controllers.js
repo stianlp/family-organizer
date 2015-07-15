@@ -60,6 +60,7 @@ angular.module('starter.controllers', [])
                 $scope.newUserExist = false;
                 Users.createUser($scope.newUser).then(function(data) {
                     Main.setUser(data.$id).then(function() {
+                        console.log('user set');
                         family();
                     });
                 });
@@ -73,11 +74,17 @@ angular.module('starter.controllers', [])
         $scope.existingFamilies = Families.getFamilies();
 
 
+        function goToPath() {
+            Main.setFamily().then(function() {
+                $state.go('path');
+            });
+        }
+
         /* Join family variables */
         $scope.search = '';
         $scope.join = function(family) {
             Families.addUserToFamily(Main.getUser().$id, family.$id).then(function(data) {
-                $state.go('path');
+                goToPath();
             });
         };
 
@@ -95,7 +102,7 @@ angular.module('starter.controllers', [])
                 $scope.newFamilyExist = false;
                 Families.createFamily($scope.newFamily).then(function(familyData) {
                     Families.addUserToFamily(Main.getUser().$id, familyData.$id).then(function() {
-                        $state.go('path');
+                        goToPath();
                     });
                 });
             } else {
@@ -117,7 +124,6 @@ angular.module('starter.controllers', [])
 
             Main.getFamily().then(function(familyMembers) {
                 $scope.family = familyMembers;
-                console.log(familyMembers)
                 _.forEach(familyMembers, function(member) {
                     member.$watch(function(d) {
                         updateFamilyPath();
@@ -129,7 +135,6 @@ angular.module('starter.controllers', [])
         //});
 
         function updateFamilyPath() {
-            console.log('dsadsadas')
             $scope.familyPath = new Array(Main.getPathLength());
             _.forEach($scope.family, function(member) {
                 if ($scope.familyPath[member.position] === undefined) {
