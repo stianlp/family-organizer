@@ -80,7 +80,8 @@ angular.module('starter.services', [])
             getUser: getUser,
             createUser: createUser,
             receivePoints: receivePoints,
-            getPoints: getPoints
+            getPoints: getPoints,
+            assignTaskToUser: assignTaskToUser
         };
 
         function getUsers(){
@@ -122,10 +123,12 @@ angular.module('starter.services', [])
             $firebaseObject(ref2).$loaded().then(function(x){
                 return (x.points);
             });
-
         }
 
-
+        function assignTaskToUser(user, task) {
+            user.task = task;
+            user.$save();
+        }
     })
 
     .factory('Families', function($firebaseArray, $firebaseObject, Main, $q) {
@@ -166,18 +169,9 @@ angular.module('starter.services', [])
     .factory('Tasks', function($firebaseArray, $q) {
         var tasks = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/tasks'));
 
-        console.log(tasks);
-
         return {
-            getTask: getTask,
             getTasks: getTasks
         };
-
-
-        //TODO remove or change?
-        function getTask() {
-            return tasks;
-        }
 
         function getTasks() {
             var deferred = $q.defer();
@@ -192,4 +186,4 @@ angular.module('starter.services', [])
     .factory('Scoreboard', function($firebaseObject) {
 
 
-    })
+    });

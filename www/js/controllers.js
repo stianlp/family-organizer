@@ -155,7 +155,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('AssignTaskCtrl', function($scope, Main, Tasks) {
+    .controller('AssignTaskCtrl', function($scope, Main, Tasks, Users) {
         Tasks.getTasks().then(function(tasks) {
             $scope.tasks = tasks;
         });
@@ -166,7 +166,7 @@ angular.module('starter.controllers', [])
         });
 
         $scope.selectedTask = -1;
-        $scope.selectedFamilyMember = -1;
+        $scope.selectedFamilyMember = 1;
 
         $scope.selectTask = function(index) {
             $scope.selectedTask = index;
@@ -178,12 +178,11 @@ angular.module('starter.controllers', [])
 
         $scope.assignTask = function() {
             if ($scope.selectedTask === -1 || $scope.selectedFamilyMember === -1) return;
-
-            
+            Users.assignTaskToUser($scope.family[$scope.selectedFamilyMember], $scope.tasks[$scope.selectedTask]);
         };
     })
 
-    .controller('ScoreboardCtrl', function($scope, Main, Users){
+    .controller('ScoreboardCtrl', function($scope, Main){
         $scope.currentUser = Main.getUser();
 
         $scope.points = $scope.currentUser.points;
@@ -197,7 +196,7 @@ angular.module('starter.controllers', [])
 
         $scope.getAvatar = function(user){
             return user.avatar;
-        }
+        };
 
         $scope.goals = [{name:'Bicycle', points: 2000},{name:'Cinema ticket', points: 1000}, {name:'Rayman', points: 4000}]
     });
