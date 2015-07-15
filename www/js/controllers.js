@@ -119,7 +119,10 @@ angular.module('starter.controllers', [])
         /* Uncomment this stuff if you want to refresh from path view */
         //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
         //    $scope.currentUser = user;
+        if (!$scope.currentUser.task) {
+            //TODO change this to something else maybe :)
             $scope.currentUser.task = {task: 'Clean you bathroom', points: 14};
+        }
 
             $scope.familyPath = new Array(Main.getPathLength());
 
@@ -166,7 +169,7 @@ angular.module('starter.controllers', [])
         });
 
         $scope.selectedTask = -1;
-        $scope.selectedFamilyMember = 1;
+        $scope.selectedFamilyMember = -1;
 
         $scope.selectTask = function(index) {
             $scope.selectedTask = index;
