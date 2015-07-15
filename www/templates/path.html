@@ -5,7 +5,7 @@
             <div ng-repeat="members in familyPath track by $index" class="group-of-members-path" ng-class="getTheClass($index)" ng-show="members.length > 0">
                 <family-members-on-path members="members" user="currentUser" update-points="updatePoints"></family-members-on-path>
             </div>
-            <div class = "avatar" ng-class="avatar" ng-click="scoreboard()"></div>
+            <div class = "avatar" ng-class="avatar" ui-sref="scoreboard"></div>
         </div>
     </ion-content>
 </ion-view>

@@ -134,11 +134,6 @@ angular.module('starter.controllers', [])
             });
 
         });
-
-        $scope.scoreboard = function(){
-
-                $state.go('scoreboard');
-        };
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
