@@ -1,13 +1,11 @@
 angular.module('starter.services', [])
 
-    .factory('Main', function($firebaseObject, $firebaseArray, $q) {
-        var loggedInUser;
+    .factory('Main', function($firebaseObject, $firebaseArray, $q, Users) {
         var pathLength = 8;
 
-        var family;
+        var loggedInUser;
+        var loggedInUsersFamily = [];
 
-
-        //TODO handshake
 
         return {
             setUser: setUser,
@@ -16,12 +14,29 @@ angular.module('starter.services', [])
             getPathLength: getPathLength
         };
 
+        /* Private helper function to set up family members */
+        function setFamily() {
+            var deferred = $q.defer();
+            $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + loggedInUser.familyId + '/users'))
+                .$loaded().then(function (family) {
+                    _.forEach(family, function(memberId) {
+                        Users.getUser(memberId.$value).then(function (member) {
+                            loggedInUsersFamily.push(member);
+                            deferred.resolve('Family set');
+                        });
+                    });
+            });
+            return deferred.promise;
+        }
+
         function setUser(userId) {
             var deferred = $q.defer();
             $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users/' + userId))
                 .$loaded().then(function(obj) {
                     loggedInUser = obj;
-                    deferred.resolve('User set!');
+                    setFamily().then(function() {
+                        deferred.resolve('User set!');
+                    });
                 });
             return deferred.promise;
         }
@@ -30,16 +45,9 @@ angular.module('starter.services', [])
             return loggedInUser;
         }
 
-        //TODO get family members
-        function getFamily(){
-
-            var famID = loggedInUser.familyId;
+        function getFamily() {
             var deferred = $q.defer();
-            $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + famID + '/users')).$loaded().then(function (x){
-                family = x;
-                deferred.resolve(x);
-            });
-
+            deferred.resolve(loggedInUsersFamily);
             return deferred.promise;
         }
 
@@ -48,7 +56,7 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('Users', function($firebaseArray, $firebaseObject, $q, Main) {
+    .factory('Users', function($firebaseArray, $firebaseObject, $q) {
         var array = $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/users'));
 
         return {
@@ -81,11 +89,9 @@ angular.module('starter.services', [])
             return deferred.promise;
         }
 
-        function receivePoints(points) {
-            var user = Main.getUser();
-            console.log(user.points, typeof user.points, points);
+        function receivePoints(user, points, reset) {
             user.points += points;
-            if (user.position === Main.getPathLength()-1) {
+            if (user.position === reset) {
                 user.position = 0;
             } else {
                 user.position += 1;

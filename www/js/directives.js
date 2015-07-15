@@ -36,25 +36,3 @@ angular.module('starter.directives', [])
             }
         };
     });
-
-    //.directive ('checkOwnTask', function(){
-    //    return {
-    //        scope: {
-    //            taskText: '=',
-    //            //points: '=points',
-    //            updatePoints: '=',
-    //            open: '='
-    //
-    //        },
-    //        template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
-    //        link: function (scope) {
-    //
-    //            scope.$watch('open', function() {
-    //                console.log(scope.open);
-    //            });
-    //            scope.done = function() {
-    //                console.log('hey');
-    //                scope.updatePoints(10);
-    //            };
-    //        }
-    //    };
