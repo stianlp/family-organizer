@@ -108,3 +108,42 @@
     height: 30px;
     background-color: #11c1f3;
 }
+
+.avatarPart {
+    padding-top: 20px;
+    padding-left: 116px;
+    min-height: 150px; }
+    .avatarPart > img:first-child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    max-width: 100px;
+    max-height: 100px;
+    width: 100%;
+    height: 100%;
+
+    }
+
+.pointsPart {
+    display: table;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.pointsPart >img:first-child,.pointsStyle {
+    display: inline-block;
+    vertical-align:  middle;
+    margin: 0;
+}
+
+.pointsPart >img:first-child {
+    /*display: inline-block;*/
+    max-width: 50px;
+    max-height: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.pointsStyle {
+    margin: 10px;
+}

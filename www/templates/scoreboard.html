@@ -1,7 +1,16 @@
 <ion-view view-title="Choose your profile">
     <ion-content class="padding">
-        <ion-item>
-            <div>Hi! you're in the avatar part! enjoy </div>
-        </ion-item>
+        <div style="border: none">
+                <div class="avatarPart">
+                    <img src="../img/ionic.png">
+                    <h2>{{currentUser.name}}</h2>
+                    <p>{{familyName}}</p>
+                </div>
+            <div class="pointsPart">
+                <img src="../img/ionic.png">
+                <h2 class="pointsStyle" >{{points}}</h2>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>
