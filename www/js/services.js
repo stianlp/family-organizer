@@ -35,7 +35,7 @@ angular.module('starter.services', [])
                 .$loaded().then(function(obj) {
                     loggedInUser = obj;
                     setFamily().then(function() {
-                        deferred.resolve('User set!');
+                        deferred.resolve(obj);
                     });
                 });
             return deferred.promise;
