@@ -1,44 +1,60 @@
 angular.module('starter.directives', [])
-    .directive ('path', function(){
+    .directive ('familyMembersOnPath', function(){
         return {
             scope: {
-                members: '=members'
-
+                members: '=members',
+                user: '=user',
+                updatePoints: '=updatePoints'
             },
-            template: '<div class="memberPosition"><div ng-repeat="member in members">{{member}}</div></div>',
-            link: function (scope, element) {
-                //console.log("sdaasdsad")
-                //console.log(scope.val);
-
-                //if (scope.members.length > 0){
-                //    scope.members.forEach(function(entry){
-                //        element.append(entry);
-                //        //element.css("padding-bottom", "300px");
-                //        console.log(entry);
-                //    })
-                //}
-
-                console.log(scope.members);
-
-                //element.css("top", "10%")
+            templateUrl: 'templates/family-members-on-path.html',
+            link: function (scope) {
             }
         };
 
     })
 
-    .directive ('checkOwnTask', function(){
+    .directive ('familyMemberOnPath', function(){
         return {
             scope: {
-                taskText: '=taskText',
-                points: '=points',
-                updatePoints: '='
+                member: '=member',
+                user: '=user',
+                updatePoints: '=updatePoints'
             },
-            template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+            templateUrl: 'templates/family-member-on-path.html',
             link: function (scope) {
-                scope.done = function() {
-                    scope.updatePoints(scope.points);
+                scope.taskIsOpen =  false;
+                scope.openTask = function() {
+                    if (scope.member.$id === scope.user.$id) {
+                        scope.taskIsOpen = true;
+                    }
+                };
+
+                scope.doneTask = function() {
+                    scope.updatePoints(scope.user.task.points);
+                    scope.taskIsOpen = false;
                 };
             }
         };
-
     });
+
+    //.directive ('checkOwnTask', function(){
+    //    return {
+    //        scope: {
+    //            taskText: '=',
+    //            //points: '=points',
+    //            updatePoints: '=',
+    //            open: '='
+    //
+    //        },
+    //        template: '<div><p>{{taskText}}</p><h1>{{points}}</h1><div ng-click="done()">circle</div></div>',
+    //        link: function (scope) {
+    //
+    //            scope.$watch('open', function() {
+    //                console.log(scope.open);
+    //            });
+    //            scope.done = function() {
+    //                console.log('hey');
+    //                scope.updatePoints(10);
+    //            };
+    //        }
+    //    };

@@ -107,55 +107,39 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
-        $scope.pathTasks = [0, 1, 2, 3]
+        $scope.currentUser = Main.getUser();
+
+        $scope.currentUser.task = {task: 'sometask', points: 10};
+
         $scope.familyPath = [];
         $scope.getTheClass = function(task) {
             return 'pos' + task;
         };
 
-        $scope.pickTask = function(task){
-
-            if ($scope.userPosition === task){
-                $state.go('task');
-            }
-            else{
-                $window.alert("Finish your task!!");
-            }
-
+        $scope.updatePoints = function(points) {
+            Users.receivePoints(points);
         };
 
         Main.getFamily().then(function(familyMembers) {
 
-            //TODO: combine arrays
             $scope.familyPath = new Array(Main.getPathLength());
             for (var i=0; i<$scope.familyPath.length; i++){
                 $scope.familyPath[i] = [];
             }
-
-
             familyMembers.forEach(function(entry){
 
-
-                Users.getUser(entry.$value).then(function (x){
-                    console.log(x)
-                    $scope.familyPath[x.position].push(x.$id);
+                Users.getUser(entry.$value).then(function (member){
+                    $scope.familyPath[member.position].push(member);
 
                 });
             });
 
-
         });
-
-        $scope.updatePoints = function(points) {
-            console.log('in ctrl', points);
-            Users.receivePoints(points);
-        };
 
         $scope.scoreboard = function(){
 
                 $state.go('scoreboard');
         };
-
     })
 
     .controller('TaskCtrl', function($scope, $window, Main, Users, Tasks) {
@@ -164,7 +148,6 @@ angular.module('starter.controllers', [])
             $scope.task = x.task;
         });
 
-        console.log("were here");
     })
 
 

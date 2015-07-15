@@ -85,6 +85,11 @@ angular.module('starter.services', [])
             var user = Main.getUser();
             console.log(user.points, typeof user.points, points);
             user.points += points;
+            if (user.position === Main.getPathLength()-1) {
+                user.position = 0;
+            } else {
+                user.position += 1;
+            }
             user.$save();
         }
 

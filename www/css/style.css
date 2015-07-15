@@ -22,7 +22,7 @@
     background-size: 100% 100%;
     background-origin: border-box;
     position: absolute;
-    top: 44px;
+    top: 0;
     right: 0;
     left: 0;
     bottom: 0;
@@ -41,29 +41,63 @@
 .pos0 {
     top: 92%;
     left: 10%;
-    background-color: #007aff;
+    /*background-color: #007aff;*/
 
 }
 
 .pos1 {
      top: 79%;
      left: 58%;
-     background-color: #28a54c;
+     /*background-color: #28a54c;*/
  }
 
 .pos2 {
     top: 68%;
     left: 90%;
-    background-color: #ffc900;
+    /*background-color: #ffc900;*/
 }
 
 .pos3 {
     top: 62%;
     left: 10%;
-    background-color: deeppink;
+    /*background-color: deeppink;*/
 }
-.memberPosition {
-    width: 200px;
+
+.pos4 {
+    top: 42%;
+    left: 14%;
+    /*background-color: deeppink;*/
+}
+
+.pos5 {
+    top: 38%;
+    left: 84%;
+    /*background-color: deeppink;*/
+}
+
+.pos6 {
+    top: 25%;
+    left: 13%;
+    /*background-color: deeppink;*/
+}
+
+.pos7 {
+    top: 3%;
+    left: 88%;
+    /*background-color: deeppink;*/
+}
+
+.membersPosition {
+    width: 100px;
+}
+
+.show-the-task {
+    position: fixed;
+    background: #FFFFFF;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
 }
 
 .avatar {
