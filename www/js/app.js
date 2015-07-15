@@ -82,6 +82,12 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 controller: 'ScoreboardCtrl'
             })
 
+            .state('assign-task', {
+                url: "/assign-task",
+                templateUrl: "templates/assign-task.html",
+                controller: 'AssignTaskCtrl'
+            })
+
             // Each tab has its own nav history stack:
 
             .state('tab.dash', {

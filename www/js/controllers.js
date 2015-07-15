@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
         }
 
         /* Join family variables */
-        $scope.search = '';
+        $scope.search = {search:''};
         $scope.join = function(family) {
             Families.addUserToFamily(Main.getUser().$id, family.$id).then(function(data) {
                 goToPath();
