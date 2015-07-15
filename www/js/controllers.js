@@ -22,7 +22,8 @@ angular.module('starter.controllers', [])
                             position: 0,
                             role: '',
                             points: 0,
-                            familyId: -1};
+                            familyId: -1,
+                            avatar: 'mdi mdi-emoticon'};
 
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
@@ -194,6 +195,10 @@ angular.module('starter.controllers', [])
 
             console.log($scope.familyName);
         });
+
+        $scope.getAvatar = function(user){
+            return user.avatar;
+        }
 
 
 

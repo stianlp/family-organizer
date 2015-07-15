@@ -2,12 +2,12 @@
     <ion-content class="padding">
         <div style="border: none">
                 <div class="avatarPart">
-                    <img src="../img/ionic.png">
+                    <i ng-class="getAvatar(currentUser)"></i>  <!-- bell -->
                     <h2>{{currentUser.name}}</h2>
                     <p>{{familyName}}</p>
                 </div>
             <div class="pointsPart">
-                <img src="../img/ionic.png">
+                <i class="mdi mdi-star-circle"></i>
                 <h2 class="pointsStyle" >{{points}}</h2>
             </div>
         </div>
