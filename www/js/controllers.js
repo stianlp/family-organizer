@@ -108,7 +108,6 @@ angular.module('starter.controllers', [])
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
         $scope.currentUser = Main.getUser();
-
         $scope.currentUser.task = {task: 'sometask', points: 10};
 
         $scope.familyPath = [];
