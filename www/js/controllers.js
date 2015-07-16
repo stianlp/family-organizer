@@ -120,10 +120,6 @@ angular.module('starter.controllers', [])
         /* Uncomment this stuff if you want to refresh from path view */
         //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
         //    $scope.currentUser = user;
-        if (!$scope.currentUser.task) {
-            //TODO change this to something else maybe :)
-            $scope.currentUser.task = {task: 'Clean you bathroom', points: 14};
-        }
 
         $scope.familyPath = new Array(Main.getPathLength());
 
@@ -152,11 +148,29 @@ angular.module('starter.controllers', [])
         $scope.getPositionClass = function(task) {
             return 'pos' + task;
         };
+    })
 
-        $scope.updatePoints = function(points) {
-            Users.receivePoints($scope.currentUser, points, Main.getPathLength()-1);
+    .controller('CompleteTaskCtrl', function($scope, $state, $timeout, Main, Users) {
+        $scope.currentUser = Main.getUser();
+        $scope.noTask = false;
+        $scope.checkOff = 1;
+
+        if (!$scope.currentUser.task) {
+            //TODO change this to something else maybe :)
+            $scope.noTask = true;
+        }
+
+        $scope.doneTask = function() {
+            if ($scope.checkOff === 2) return;
+
+            $scope.checkOff = 2;
+            $timeout(function() {
+                Users.receivePoints($scope.currentUser, $scope.currentUser.task.points, Main.getPathLength()-1);
+                $timeout(function() {
+                    $state.go('path');
+                },400);
+            },800);
         };
-
     })
 
     .controller('AssignTaskCtrl', function($scope, Main, Tasks, Users) {
