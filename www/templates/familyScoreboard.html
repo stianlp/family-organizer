@@ -1,0 +1,14 @@
+<ion-view view-title="Family scoreboard">
+    <ion-content class="padding">
+        <div ng-repeat="member in familyMembers | orderBy:'-points'" >
+
+            <div class="row scorePoints" style="vertical-align: middle">
+                <div class="col col-25 mdi" ng-class="member.avatar" style="font-size: 40pt"></div>
+                <div class="col col-50">{{member.name}}</div>
+                <div class="col col-20">{{member.points}}</div>
+                <div class="col col-5 mdi mdi-star-circle" style="color: orange"></div></div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
