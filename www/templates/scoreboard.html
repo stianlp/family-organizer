@@ -1,10 +1,10 @@
-<ion-view view-title="Choose your profile">
+<ion-view view-title="Personal scoreboard">
     <ion-content class="padding">
         <div style="border: none">
                 <div class="avatarPart">
                     <i class="mdi" ng-class="getAvatar(currentUser)"></i>  <!-- bell -->
                     <h2>{{currentUser.name}}</h2>
-                    <p>{{familyName}}</p>
+                    <p ui-sref="familyScoreboard">{{familyName}}</p>
                 </div>
             <div class="pointsPart">
                 <i class="mdi mdi-star-circle"></i>

@@ -17,13 +17,14 @@ angular.module('starter.controllers', [])
         var existingUsers = Users.getUsers();
         $scope.existingUser = { username: ''};
         $scope.newUser = { username: '',
-                            name: '',
-                            age: '',
-                            position: 0,
-                            role: '',
-                            points: 0,
-                            familyId: -1,
-                            avatar: 'mdi-emoticon'};
+            name: '',
+            age: '',
+            position: 0,
+            role: '',
+            points: 0,
+            familyId: -1,
+            avatar: 'mdi-emoticon',
+            goals: [{name:'Bicycle', points: 2000},{name:'Cinema ticket', points: 1000}, {name:'Rayman', points: 4000}]};
 
         $scope.existingUserNotExist = false;
         $scope.newUserExist = false;
@@ -91,7 +92,7 @@ angular.module('starter.controllers', [])
 
         /* Create family variables */
         $scope.newFamily = { username: '',
-                             name: ''};
+            name: ''};
         $scope.newFamilyExist = false;
 
         $scope.create = function() {
@@ -124,17 +125,17 @@ angular.module('starter.controllers', [])
             $scope.currentUser.task = {task: 'Clean you bathroom', points: 14};
         }
 
-            $scope.familyPath = new Array(Main.getPathLength());
+        $scope.familyPath = new Array(Main.getPathLength());
 
-            Main.getFamily().then(function(familyMembers) {
-                $scope.family = familyMembers;
-                _.forEach(familyMembers, function(member) {
-                    member.$watch(function(d) {
-                        updateFamilyPath();
-                    });
+        Main.getFamily().then(function(familyMembers) {
+            $scope.family = familyMembers;
+            _.forEach(familyMembers, function(member) {
+                member.$watch(function(d) {
+                    updateFamilyPath();
                 });
-                updateFamilyPath();
             });
+            updateFamilyPath();
+        });
 
         //});
 
@@ -201,5 +202,12 @@ angular.module('starter.controllers', [])
             return user.avatar;
         };
 
-        $scope.goals = [{name:'Bicycle', points: 2000},{name:'Cinema ticket', points: 1000}, {name:'Rayman', points: 4000}]
+        $scope.goals = $scope.currentUser.goals;
+    })
+
+    .controller('familyScoreboardCtrl', function($scope, Main, Users){
+        Main.getFamily().then(function(familyMembers) {
+            $scope.familyMembers = familyMembers;
+        });
+
     });
