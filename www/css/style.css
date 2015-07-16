@@ -209,9 +209,9 @@
 }
 
 .scorePoints {
-    font-size: 25pt;
+    font-size: 20pt;
     position: relative;
-    vertical-align: middle;
+    vertical-align: text-bottom;
 
 }
 

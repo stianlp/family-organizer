@@ -4,9 +4,9 @@
         <div ng-repeat="member in familyMembers | orderBy:'-points'" >
             <i ng-show="$index == 0" class="mdi mdi-crown" style="font-size: 40pt; color: gold; transform: rotate(-10deg);"></i>
 
-            <div class="row scorePoints" style="vertical-align: middle">
+            <div class="row scorePoints">
 
-                <div class="col col-25 mdi" ng-class="member.avatar" style="font-size: 40pt; z-index=-1"></div>
+                <div class="col col-25 mdi" ng-class="member.avatar" style="font-size: 40pt; z-index=-1; margin: 0 auto"></div>
                 <div class="col col-50">{{member.name}}</div>
                 <div class="col col-20">{{member.points}}</div>
                 <div class="col col-5 mdi mdi-star-circle" style="color: orange"></div></div>
