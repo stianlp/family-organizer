@@ -70,10 +70,10 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
                 controller: 'PathCtrl'
             })
 
-            .state('task', {
-                url: "/task",
-                templateUrl: "templates/task.html",
-                controller: 'TaskCtrl'
+            .state('complete-task', {
+                url: "/comlete-task",
+                templateUrl: "templates/complete-task.html",
+                controller: 'CompleteTaskCtrl'
             })
 
             .state('scoreboard', {
