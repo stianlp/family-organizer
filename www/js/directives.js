@@ -18,7 +18,8 @@ angular.module('starter.directives', [])
             goal: '=goal',
             userPoints: '=userPoints'
         },
-        template: '<progress max="100" ng-value="userPoints/goal.points*100"> <div class="progress-bar"> <span ng-style="width: {value}%;"></span> </div></progress>',
+        //template: '<progress max="100" ng-value="userPoints/goal.points*100"> <div class="progress-bar"> <span ng-style="width: {value}%;"></span> </div></progress>',
+        template: '<div class="progr-background" ><div class="progr-bar" ng-style="{ \'width\': {{userPoints/goal.points*100}} + \'%\'}"></div></div>',
         link: function (scope) {
         }
     };

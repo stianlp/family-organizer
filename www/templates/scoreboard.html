@@ -11,7 +11,11 @@
                 <h2 class="pointsStyle" >{{points}}</h2>
             </div>
             <div ng-repeat="goal in goals">
-                <div style="display: table; margin: 0auto"> <div class="goalName">{{goal.name}}</div><div class="totalPoints">{{goal.points}}</div></div>
+                <div class="row" style="font-size: 20pt">
+                    <div class="col">{{goal.name}}</div>
+                    <div class="col" style="text-align: right">{{goal.points}}</div>
+                </div>
+                <!--<div style="display: table; margin: 0auto"> <div class="goalName">{{goal.name}}</div><div class="totalPoints">{{goal.points}}</div></div>-->
                 <progress-bar goal="goal" user-points="currentUser.points"></progress-bar>
             </div>
 
