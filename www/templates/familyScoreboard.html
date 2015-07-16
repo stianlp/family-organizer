@@ -1,7 +1,9 @@
 <ion-view view-title="Family scoreboard">
     <ion-content class="padding">
+
         <div ng-repeat="member in familyMembers | orderBy:'-points'" >
 
+            <i ng-show="$index == 0" class="mdi mdi-crown" style="font-size: 40pt; top: 5%; left: 10%"></i>
             <div class="row scorePoints" style="vertical-align: middle">
                 <div class="col col-25 mdi" ng-class="member.avatar" style="font-size: 40pt"></div>
                 <div class="col col-50">{{member.name}}</div>

@@ -203,6 +203,8 @@ angular.module('starter.controllers', [])
         };
 
         $scope.goals = $scope.currentUser.goals;
+
+
     })
 
     .controller('familyScoreboardCtrl', function($scope, Main, Users){
