@@ -1,5 +1,9 @@
 /* Empty. Add your own CSS if you like */
 
+/*body {*/
+    /*color: #068079;*/
+/*}*/
+
 .my-list {
     height: 200px;
 }
@@ -18,7 +22,21 @@
 }
 
 .path {
-    background: url("../img/path.png") no-repeat;
+    background: url("../img/gamPath.png") no-repeat;
+    background-size: 100% 100%;
+    background-origin: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    color: #002E2C;
+}
+
+.taskBackground{
+    background: url("../img/gamPath.png") no-repeat;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
     background-size: 100% 100%;
     background-origin: border-box;
     position: absolute;
@@ -33,43 +51,43 @@
 }
 
 .pos0 {
-    top: 92%;
-    left: 10%;
+    top: 84%;
+    left: 13%;
 }
 
 .pos1 {
-     top: 79%;
-     left: 58%;
+     top: 80%;
+     left: 51%;
  }
 
 .pos2 {
-    top: 68%;
-    left: 90%;
+    top: 63%;
+    left: 88%;
 }
 
 .pos3 {
-    top: 62%;
-    left: 10%;
+    top: 61%;
+    left: 36%;
 }
 
 .pos4 {
-    top: 42%;
+    top: 40%;
     left: 14%;
 }
 
 .pos5 {
-    top: 38%;
-    left: 84%;
+    top: 28%;
+    left: 54%;
 }
 
 .pos6 {
-    top: 25%;
-    left: 13%;
+    top: 15%;
+    left: 80%;
 }
 
 .pos7 {
-    top: 3%;
-    left: 88%;
+    top: 6%;
+    left: 22%;
 }
 
 .members-position > div {
@@ -272,4 +290,8 @@
     zoom: 1;
     cursor: default !important;
     pointer-events: none;
+}
+
+.pathButtons {
+    color: #002E2C;
 }
