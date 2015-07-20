@@ -150,13 +150,17 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('CompleteTaskCtrl', function($scope, $state, $timeout, Main, Users) {
+    .controller('CompleteTaskCtrl', function($scope, $state, $stateParams, $timeout, Main, Users) {
         $scope.currentUser = Main.getUser();
+        $scope.yourTask = true;
+        if ($stateParams.member.$id !== $scope.currentUser.$id) {
+            $scope.yourTask = false;
+            $scope.memberName = $stateParams.member.name;
+        }
         $scope.noTask = false;
         $scope.checkOff = 1;
 
         if (!$scope.currentUser.task) {
-            //TODO change this to something else maybe :)
             $scope.noTask = true;
         }
 
