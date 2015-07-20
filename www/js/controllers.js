@@ -155,6 +155,7 @@ angular.module('starter.controllers', [])
 
             $scope.checkOff = 2;
             $timeout(function() {
+                console.log($scope.currentUser, $scope.currentUser.task.points, Main.getPathLength()-1);
                 Users.receivePoints($scope.currentUser, $scope.currentUser.task.points, Main.getPathLength()-1);
                 $timeout(function() {
                     $state.go('path');
@@ -192,8 +193,6 @@ angular.module('starter.controllers', [])
 
     .controller('ScoreboardCtrl', function($scope, Main, Viral){
         $scope.currentUser = Main.getUser();
-
-        $scope.points = $scope.currentUser.points;
 
         Main.getFamilyName().then(function(x) {
 
