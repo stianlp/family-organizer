@@ -160,7 +160,8 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('AssignTaskCtrl', function($scope, Main, Tasks, Users) {
+    .controller('AssignTaskCtrl', function($scope, Main, Tasks, Users, $timeout) {
+        $scope.assignedTask = false;
         Tasks.getTasks().then(function(tasks) {
             $scope.tasks = tasks;
         });
@@ -184,6 +185,13 @@ angular.module('starter.controllers', [])
         $scope.assignTask = function() {
             if ($scope.selectedTask === -1 || $scope.selectedFamilyMember === -1) return;
             Users.assignTaskToUser($scope.family[$scope.selectedFamilyMember], $scope.tasks[$scope.selectedTask]);
+            $scope.assignedTask = true;
+            $timeout(function() {
+                $scope.assignedTask = false;
+                $scope.selectedTask = -1;
+                $scope.selectedFamilyMember = -1;
+            },800);
+
         };
     })
 

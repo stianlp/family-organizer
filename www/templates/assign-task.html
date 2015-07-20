@@ -27,5 +27,6 @@
         <button class="button button-full taskButton" ng-class="{'disabled': (selectedTask === -1 || selectedFamilyMember === -1)}" ng-click="assignTask()">
             Assign task
         </button>
+        <p ng-show="assignedTask" class="error">Task assigned!</p>
     </ion-content>
 </ion-view>
