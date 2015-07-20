@@ -49,7 +49,6 @@ angular.module('starter.controllers', [])
                 $scope.newUserExist = false;
                 Users.createUser($scope.newUser).then(function(data) {
                     Main.setUser(data.$id).then(function() {
-                        console.log('user set');
                         family();
                     });
                 });
@@ -136,8 +135,6 @@ angular.module('starter.controllers', [])
         $scope.currentUser = Main.getUser();
         $scope.yourTask = true;
 
-        console.log($stateParams.member.$id, $scope.currentUser.$id)
-
 
         if ($stateParams.member.$id !== $scope.currentUser.$id) {
             $scope.yourTask = false;
@@ -155,7 +152,6 @@ angular.module('starter.controllers', [])
 
             $scope.checkOff = 2;
             $timeout(function() {
-                console.log($scope.currentUser, $scope.currentUser.task.points, Main.getPathLength()-1);
                 Users.receivePoints($scope.currentUser, $scope.currentUser.task.points, Main.getPathLength()-1);
                 $timeout(function() {
                     $state.go('path');
@@ -198,7 +194,6 @@ angular.module('starter.controllers', [])
 
             $scope.familyName = x.$value;
 
-            console.log($scope.familyName);
         });
 
         $scope.getAvatar = function(user){
