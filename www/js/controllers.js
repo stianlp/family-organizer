@@ -200,7 +200,7 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('ScoreboardCtrl', function($scope, Main){
+    .controller('ScoreboardCtrl', function($scope, Main, Viral){
         $scope.currentUser = Main.getUser();
 
         $scope.points = $scope.currentUser.points;
@@ -218,12 +218,17 @@ angular.module('starter.controllers', [])
 
         $scope.goals = $scope.currentUser.goals;
 
+        $scope.fbClick = Viral.fbClick;
+        $scope.twClick = Viral.twClick;
 
     })
 
-    .controller('familyScoreboardCtrl', function($scope, Main, Users){
+    .controller('FamilyScoreboardCtrl', function($scope, Main, Viral) {
         Main.getFamily().then(function(familyMembers) {
             $scope.familyMembers = familyMembers;
         });
+
+        $scope.fbClick = Viral.fbClick;
+        $scope.twClick = Viral.twClick;
 
     });

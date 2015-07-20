@@ -85,7 +85,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
             .state('familyScoreboard', {
                 url: "/familyScoreboard",
                 templateUrl: "templates/familyScoreboard.html",
-                controller: 'familyScoreboardCtrl'
+                controller: 'FamilyScoreboardCtrl'
             })
 
             .state('assign-task', {

@@ -176,14 +176,35 @@ angular.module('starter.services', [])
         function getTasks() {
             var deferred = $q.defer();
             tasks.$loaded().then(function(ref) {
-                console.log(ref);
                 deferred.resolve(ref);
             });
             return deferred.promise;
         }
     })
 
-    .factory('Scoreboard', function($firebaseObject) {
+    .factory('Viral', function($firebaseObject) {
+        var viral = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/viral'));
+
+        return {
+            fbClick: fbClick,
+            twClick: twClick
+        };
+
+        function fbClick() {
+            viral.$loaded().then(function(ref) {
+                viral.fb += 1;
+                viral.$save();
+                alert('Shared on facebook!');
+            });
+        }
+
+        function twClick() {
+            viral.$loaded().then(function(ref) {
+                viral.tw += 1;
+                viral.$save();
+                alert('Shared on twitter!');
+            });
+        }
 
 
     });
