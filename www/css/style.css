@@ -50,7 +50,6 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
     right: 0;
     left: 0;
     bottom: 0;
-    /*color: #002E2C;*/
 }
 
 .taskBackground{
@@ -70,8 +69,34 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
     position: absolute;
 }
 
+.highlight-user-on-path {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    background: rgba(244, 241, 225, 0.8);
+}
+
+.highlight-user-on-path > i {
+    position: absolute;
+    left: 24px;
+    top: 10px;
+    font-size: 32px;
+    color: #af71b0;
+}
+
+.highlight-user-on-path > div {
+    position: absolute;
+    width: inherit;
+    top: 42px;
+}
+
+.highlight-user-on-path > div > p {
+    text-align: center;
+    /*color: #73c8d9 !important;*/
+}
+
 .pos0 {
-    top: 84%;
+    top: 80%;
     left: 13%;
 }
 
@@ -81,8 +106,8 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
  }
 
 .pos2 {
-    top: 63%;
-    left: 88%;
+    top: 60%;
+    left: 80%;
 }
 
 .pos3 {
@@ -148,26 +173,38 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
     font-size: 48px;
 }
 
+.path-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 65px;
+    background: #f4f1e1;
+    color: #605d51;
+}
+
+
 .assign-task, .scoreboard, .scoreboard-family {
     position: absolute;
 
 }
 
-.assign-task {
-    font-size: 48px;
-    right: 34%;
-    bottom: 10px;
+.scoreboard {
+    font-size: 46px;
+    left: 12%;
+    bottom: 8px;
 }
 
-.scoreboard {
-    font-size: 48px;
-    right: 20%;
-    bottom: 10px;
+.assign-task {
+    font-size: 58px;
+    left: 44%;
+    bottom: 4px;
+    color: #af71b0;
 }
 
 .scoreboard-family {
-    font-size: 55px;
-    right: 4%;
+    font-size: 50px;
+    right: 12%;
     bottom: 6px;
 }
 
@@ -253,26 +290,6 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
 
 }
 
-/*progress[value]::-webkit-progress-bar {*/
-    /*background-color: #eee;*/
-    /*border-radius: 2px;*/
-    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
-/*}*/
-
-/*progress[value]::-webkit-progress-value {*/
-    /*background-image:*/
-    /*-webkit-linear-gradient(-45deg,*/
-    /*transparent 33%, rgba(0, 0, 0, .1) 33%,*/
-    /*rgba(0,0, 0, .1) 66%, transparent 66%),*/
-    /*-webkit-linear-gradient(top,*/
-    /*rgba(255, 255, 255, .25),*/
-    /*rgba(0, 0, 0, .25)),*/
-    /*-webkit-linear-gradient(left, #09c, #f44);*/
-
-    /*border-radius: 2px;*/
-    /*background-size: 35px 20px, 100% 100%, 100% 100%;*/
-/*}*/
-
 
 .selected-task {
     color: #e66967;
@@ -314,14 +331,15 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
     text-align: center;
 }
 
+.center-table {
+    display: table;
+    margin: 0 auto;
+}
+
 .button.disabled {
     filter: Alpha(Opacity=30);
     opacity: .3;
     zoom: 1;
     cursor: default !important;
     pointer-events: none;
-}
-
-.pathButtons {
-    color: #002E2C;
 }

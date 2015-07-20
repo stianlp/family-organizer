@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-    
+
     .controller('LoginCtrl', function($scope, $state, Users, Main) {
         var existingUsers = Users.getUsers();
         $scope.existingUser = { username: ''};
@@ -135,6 +135,10 @@ angular.module('starter.controllers', [])
     .controller('CompleteTaskCtrl', function($scope, $state, $stateParams, $timeout, Main, Users) {
         $scope.currentUser = Main.getUser();
         $scope.yourTask = true;
+
+        console.log($stateParams.member.$id, $scope.currentUser.$id)
+
+
         if ($stateParams.member.$id !== $scope.currentUser.$id) {
             $scope.yourTask = false;
             $scope.memberName = $stateParams.member.name;

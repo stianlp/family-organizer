@@ -71,9 +71,10 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
             })
 
             .state('complete-task', {
-                url: "/comlete-task/",
+                url: "/complete-task/",
                 templateUrl: "templates/complete-task.html",
                 controller: 'CompleteTaskCtrl',
+                cache: false,
                 params: {member: null}
             })
 

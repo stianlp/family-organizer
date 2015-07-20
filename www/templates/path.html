@@ -5,14 +5,16 @@
             <div ng-repeat="members in familyPath track by $index" class="group-of-members-path" ng-class="getPositionClass($index)" ng-show="members.length > 0">
                 <family-members-on-path members="members" user="currentUser"></family-members-on-path>
             </div>
-            <div class="assign-task pathButtons" ui-sref="assign-task">
-                <i class="mdi mdi-plus-circle-outline"></i>
-            </div>
-            <div class="scoreboard pathButtons" ui-sref="scoreboard">
-                <i class="mdi mdi-account"></i>
-            </div>
-            <div class="scoreboard-family pathButtons" ui-sref="familyScoreboard">
-                <i class="mdi mdi-account-multiple"></i>
+            <div class="path-buttons">
+                <div class="assign-task" ui-sref="assign-task">
+                    <i class="mdi mdi-plus-circle-outline"></i>
+                </div>
+                <div class="scoreboard" ui-sref="scoreboard">
+                    <i class="mdi mdi-account"></i>
+                </div>
+                <div class="scoreboard-family" ui-sref="familyScoreboard">
+                    <i class="mdi mdi-account-multiple"></i>
+                </div>
             </div>
         </div>
     </ion-content>
