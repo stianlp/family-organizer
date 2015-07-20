@@ -4,6 +4,26 @@
     /*color: #068079;*/
 /*}*/
 
+p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
+}
+
+.button, .myNavBar, .button-clear.button-clear, .back-button {
+    border: none;
+    background-color: #73c8d9;
+    color: white;
+    font-weight: bold;
+}
+
+.taskButton, .myNavBar {
+
+    text-shadow: 1px 1px #5a9caa;
+}
+
+.uniformBackground {
+    background-color: #f4f1e1;
+    /*border: none;*/
+    color: #605d51 !important;
+}
 .my-list {
     height: 200px;
 }
@@ -30,7 +50,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    color: #002E2C;
+    /*color: #002E2C;*/
 }
 
 .taskBackground{
@@ -183,7 +203,7 @@
 .pointsPart >i:first-child {
     /*display: inline-block;*/
     font-size: 40pt;
-    color: orange;
+    color: #af71b0;
     max-width: 50px;
     max-height: 50px;
     width: 100%;
@@ -255,7 +275,7 @@
 
 
 .selected-task {
-    color: #d4081a;
+    color: #e66967;
 }
 
 .task-icon {

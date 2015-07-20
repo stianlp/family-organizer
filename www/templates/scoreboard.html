@@ -1,8 +1,8 @@
 <ion-view view-title="Personal scoreboard">
-    <ion-content class="padding">
+    <ion-content class="padding, uniformBackground">
         <div class="path" style="border: none">
                 <div class="avatarPart">
-                    <i class="mdi" ng-class="getAvatar(currentUser)"></i>  <!-- bell -->
+                    <i class="mdi" ng-class="getAvatar(currentUser)"></i>
                     <h2>{{currentUser.name}}</h2>
                     <p ui-sref="familyScoreboardFromPersonal">{{familyName}}</p>
                 </div>

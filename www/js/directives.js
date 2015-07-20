@@ -24,16 +24,16 @@ angular.module('starter.directives', [])
             link: function (scope) {
                 scope.setStyle = function (x){
                     if (x<25) {
-                        return {width: + x + '%', backgroundColor: "#ef473a"};
+                        return {width: + x + '%', backgroundColor: "#e66967"};
                     }
                     else if (x<75) {
-                        return {width: + x + '%', backgroundColor: "#ffc900"};
+                        return {width: + x + '%', backgroundColor: "#f3cc00"};
                     }
                     else if (x < 100) {
-                        return {width: + x + '%', backgroundColor: "#33cd5f"};
+                        return {width: + x + '%', backgroundColor: "#82b6de"};
                     }
                     else {
-                        return {width: + x + '%', backgroundColor: "#387ef5"};
+                        return {width: + x + '%', backgroundColor: "#79cd98"};
                     }
 
                 }
@@ -44,7 +44,8 @@ angular.module('starter.directives', [])
     .directive ('familyMemberOnPath', function() {
         return {
             scope: {
-                member: '=member'
+                member: '=member',
+                user: '=user'
             },
             templateUrl: 'templates/family-member-on-path.html'
         };

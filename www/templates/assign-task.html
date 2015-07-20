@@ -1,5 +1,5 @@
 <ion-view view-title="Assign Tasks">
-    <ion-content class="padding">
+    <ion-content class="padding, uniformBackground">
         <h3 class="center-text">Pick a task</h3>
         <div ng-repeat="task in tasks">
             <div class="row" ng-if="$even">
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <button class="button button-full button-balanced" ng-class="{'disabled': (selectedTask === -1 || selectedFamilyMember === -1)}" ng-click="assignTask()">
+        <button class="button button-full taskButton" ng-class="{'disabled': (selectedTask === -1 || selectedFamilyMember === -1)}" ng-click="assignTask()">
             Assign task
         </button>
     </ion-content>
