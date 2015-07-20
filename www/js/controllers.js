@@ -1,18 +1,5 @@
 angular.module('starter.controllers', [])
-
-    .controller('DashCtrl', function($scope, Users) {
-        $scope.memberDetails = {name: '', age: ''};
-
-        $scope.teamMembers = Users.getUsers();
-
-        $scope.add = function() {
-            $scope.teamMembers.$add({
-                name: $scope.memberDetails.name,
-                age: $scope.memberDetails.age
-            });
-        };
-    })
-
+    
     .controller('LoginCtrl', function($scope, $state, Users, Main) {
         var existingUsers = Users.getUsers();
         $scope.existingUser = { username: ''};
@@ -115,11 +102,7 @@ angular.module('starter.controllers', [])
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
 
-        /* Comment this line if you want to refresh from path view*/
         $scope.currentUser = Main.getUser();
-        /* Uncomment this stuff if you want to refresh from path view */
-        //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
-        //    $scope.currentUser = user;
 
         $scope.familyPath = new Array(Main.getPathLength());
 
@@ -133,7 +116,6 @@ angular.module('starter.controllers', [])
             updateFamilyPath();
         });
 
-        //});
 
         function updateFamilyPath() {
             $scope.familyPath = new Array(Main.getPathLength());

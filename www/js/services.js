@@ -6,7 +6,6 @@ angular.module('starter.services', [])
         var loggedInUser;
         var loggedInUsersFamily = [];
 
-
         return {
             setUser: setUser,
             getUser: getUser,
@@ -17,6 +16,7 @@ angular.module('starter.services', [])
         };
 
         function setFamily() {
+            loggedInUsersFamily = [];
             var deferred = $q.defer();
             if (loggedInUser && loggedInUser.familyId !== -1) {
                 $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + loggedInUser.familyId + '/users'))
@@ -24,9 +24,10 @@ angular.module('starter.services', [])
                         _.forEach(family, function(memberId) {
                             Users.getUser(memberId.$value).then(function (member) {
                                 loggedInUsersFamily.push(member);
-                                deferred.resolve('Family set');
+                                //deferred.resolve('Family set');
                             });
                         });
+                        deferred.resolve('Family set');
                 });
             } else {
                 deferred.resolve('-1 no family to set');
