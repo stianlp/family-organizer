@@ -70,6 +70,7 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
 }
 
 .highlight-user-on-path {
+    position: relative;
     border-radius: 50%;
     height: 80px;
     width: 80px;
