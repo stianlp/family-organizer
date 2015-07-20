@@ -3,11 +3,10 @@
     <!--{{member.name}}-->
 <!--</div>-->
 
-<div style="max-width: 70px" ui-sref="complete-task">
+<div style="max-width: 70px" ui-sref="complete-task({member: member})">
     <i class="mdi" ng-class="member.avatar" style="font-size: 30pt" ng-if="member.name === user.name"></i>
     <i style="font-size: 16pt" ng-if="member.name === user.name">{{member.name}}</i>
     <i class="mdi" ng-class="member.avatar" style="font-size: 20pt" ng-if="member.name != user.name"></i>
     <i style="font-size: 12pt" ng-if="member.name != user.name">{{member.name}}</i>
-
 </div>
 

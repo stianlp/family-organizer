@@ -6,7 +6,6 @@ angular.module('starter.services', [])
         var loggedInUser;
         var loggedInUsersFamily = [];
 
-
         return {
             setUser: setUser,
             getUser: getUser,
@@ -17,6 +16,7 @@ angular.module('starter.services', [])
         };
 
         function setFamily() {
+            loggedInUsersFamily = [];
             var deferred = $q.defer();
             if (loggedInUser && loggedInUser.familyId !== -1) {
                 $firebaseArray(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/families/' + loggedInUser.familyId + '/users'))
@@ -24,9 +24,10 @@ angular.module('starter.services', [])
                         _.forEach(family, function(memberId) {
                             Users.getUser(memberId.$value).then(function (member) {
                                 loggedInUsersFamily.push(member);
-                                deferred.resolve('Family set');
+                                //deferred.resolve('Family set');
                             });
                         });
+                        deferred.resolve('Family set');
                 });
             } else {
                 deferred.resolve('-1 no family to set');
@@ -176,14 +177,35 @@ angular.module('starter.services', [])
         function getTasks() {
             var deferred = $q.defer();
             tasks.$loaded().then(function(ref) {
-                console.log(ref);
                 deferred.resolve(ref);
             });
             return deferred.promise;
         }
     })
 
-    .factory('Scoreboard', function($firebaseObject) {
+    .factory('Viral', function($firebaseObject) {
+        var viral = $firebaseObject(new Firebase('https://incandescent-torch-9810.firebaseio.com/test/viral'));
+
+        return {
+            fbClick: fbClick,
+            twClick: twClick
+        };
+
+        function fbClick() {
+            viral.$loaded().then(function(ref) {
+                viral.fb += 1;
+                viral.$save();
+                alert('Shared on facebook!');
+            });
+        }
+
+        function twClick() {
+            viral.$loaded().then(function(ref) {
+                viral.tw += 1;
+                viral.$save();
+                alert('Shared on twitter!');
+            });
+        }
 
 
     });

@@ -1,15 +1,20 @@
 <ion-view view-title="Do task">
     <ion-content class="padding, uniformBackground">
-        <div ng-if="!noTask">
-            <p class="task-text">{{currentUser.task.task}}</p>
-            <h1 class="task-text points">{{currentUser.task.points}} pts</h1>
-            <div class="task-done" ng-click="doneTask()">
-                <i ng-show="checkOff == 1" class="mdi mdi-checkbox-marked-circle-outline"></i>
-                <i ng-show="checkOff == 2" class="mdi mdi-checkbox-marked-circle"></i>
+        <div ng-if="yourTask">
+            <div ng-if="!noTask">
+                <p class="task-text">{{currentUser.task.task}}</p>
+                <h1 class="task-text points">{{currentUser.task.points}} pts</h1>
+                <div class="task-done" ng-click="doneTask()">
+                    <i ng-show="checkOff == 1" class="mdi mdi-checkbox-marked-circle-outline"></i>
+                    <i ng-show="checkOff == 2" class="mdi mdi-checkbox-marked-circle"></i>
+                </div>
+            </div>
+            <div ng-if="noTask">
+                <p class="task-text">You don't have any tasks to complete, go pick one, or your mother will!</p>
             </div>
         </div>
-        <div ng-if="noTask">
-            <p class="task-text">You don't have any tasks to complete, go pick one, or your mother will!</p>
+        <div ng-if="!yourTask">
+            <p class="task-text">This is {{memberName}}'s task.</p>
         </div>
     </ion-content>
 </ion-view>

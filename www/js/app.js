@@ -71,9 +71,10 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
             })
 
             .state('complete-task', {
-                url: "/comlete-task",
+                url: "/comlete-task/",
                 templateUrl: "templates/complete-task.html",
-                controller: 'CompleteTaskCtrl'
+                controller: 'CompleteTaskCtrl',
+                params: {member: null}
             })
 
             .state('scoreboard', {
@@ -85,7 +86,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
             .state('familyScoreboard', {
                 url: "/familyScoreboard",
                 templateUrl: "templates/familyScoreboard.html",
-                controller: 'familyScoreboardCtrl'
+                controller: 'FamilyScoreboardCtrl'
             })
 
             .state('familyScoreboardFromPersonal', {

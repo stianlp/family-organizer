@@ -15,11 +15,14 @@
                     <div class="col">{{goal.name}}</div>
                     <div class="col" style="text-align: right">{{goal.points}}</div>
                 </div>
-                <!--<div style="display: table; margin: 0auto"> <div class="goalName">{{goal.name}}</div><div class="totalPoints">{{goal.points}}</div></div>-->
                 <progress-bar goal="goal" user-points="currentUser.points"></progress-bar>
             </div>
-            <!--<div class="editG" ng-click=""-->
 
+            <div class="viral-icons">
+                <i ng-click="fbClick()" class="viral-icon mdi mdi-facebook"></i>
+                <i ng-click="twClick()" class="viral-icon mdi mdi-twitter"></i>
+            </div>
+            <h3 class="center-text">Share your scoreboard!</h3>
         </div>
 
     </ion-content>

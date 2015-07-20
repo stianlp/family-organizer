@@ -1,18 +1,5 @@
 angular.module('starter.controllers', [])
-
-    .controller('DashCtrl', function($scope, Users) {
-        $scope.memberDetails = {name: '', age: ''};
-
-        $scope.teamMembers = Users.getUsers();
-
-        $scope.add = function() {
-            $scope.teamMembers.$add({
-                name: $scope.memberDetails.name,
-                age: $scope.memberDetails.age
-            });
-        };
-    })
-
+    
     .controller('LoginCtrl', function($scope, $state, Users, Main) {
         var existingUsers = Users.getUsers();
         $scope.existingUser = { username: ''};
@@ -115,11 +102,7 @@ angular.module('starter.controllers', [])
 
     .controller('PathCtrl', function($scope, $window, $state, Main, Users) {
 
-        /* Comment this line if you want to refresh from path view*/
         $scope.currentUser = Main.getUser();
-        /* Uncomment this stuff if you want to refresh from path view */
-        //Main.setUser('-JuCNS9h-T7Yi3PHa07B').then(function(user) {
-        //    $scope.currentUser = user;
 
         $scope.familyPath = new Array(Main.getPathLength());
 
@@ -133,7 +116,6 @@ angular.module('starter.controllers', [])
             updateFamilyPath();
         });
 
-        //});
 
         function updateFamilyPath() {
             $scope.familyPath = new Array(Main.getPathLength());
@@ -150,13 +132,17 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('CompleteTaskCtrl', function($scope, $state, $timeout, Main, Users) {
+    .controller('CompleteTaskCtrl', function($scope, $state, $stateParams, $timeout, Main, Users) {
         $scope.currentUser = Main.getUser();
+        $scope.yourTask = true;
+        if ($stateParams.member.$id !== $scope.currentUser.$id) {
+            $scope.yourTask = false;
+            $scope.memberName = $stateParams.member.name;
+        }
         $scope.noTask = false;
         $scope.checkOff = 1;
 
         if (!$scope.currentUser.task) {
-            //TODO change this to something else maybe :)
             $scope.noTask = true;
         }
 
@@ -200,7 +186,7 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('ScoreboardCtrl', function($scope, Main){
+    .controller('ScoreboardCtrl', function($scope, Main, Viral){
         $scope.currentUser = Main.getUser();
 
         $scope.points = $scope.currentUser.points;
@@ -218,12 +204,17 @@ angular.module('starter.controllers', [])
 
         $scope.goals = $scope.currentUser.goals;
 
+        $scope.fbClick = Viral.fbClick;
+        $scope.twClick = Viral.twClick;
 
     })
 
-    .controller('familyScoreboardCtrl', function($scope, Main, Users){
+    .controller('FamilyScoreboardCtrl', function($scope, Main, Viral) {
         Main.getFamily().then(function(familyMembers) {
             $scope.familyMembers = familyMembers;
         });
+
+        $scope.fbClick = Viral.fbClick;
+        $scope.twClick = Viral.twClick;
 
     });

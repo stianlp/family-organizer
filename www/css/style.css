@@ -298,6 +298,16 @@ p, h1, h2, h3, .p, .h1, .h2, .h3 {color: #605d51 !important;
     font-size: 8px;
 }
 
+.viral-icons {
+    display: table;
+    margin: 20px auto;
+}
+
+.viral-icon {
+    font-size: 25px;
+    margin: 10px;
+}
+
 
 /* Helper classes for reuse */
 .center-text {
